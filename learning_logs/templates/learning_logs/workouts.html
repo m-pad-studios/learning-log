@@ -1,0 +1,25 @@
+{% extends "learning_logs/base.html" %}
+{% block page_header %}
+<h3>Workout Cards</h3>
+{% endblock page_header %}
+
+{% block content %}
+
+<ul >
+    {% for workout in workouts %}
+    <div class="card mb-3"> 
+        <a href="{% url 'learning_logs:workout' workout.id %}">
+        <h4 class="card-header">
+                {{ workout.name }}   
+        </h4><br>
+    </a>
+    <h3 style="padding-left: 15px;"><a class="btn btn-sm btn-danger" href="{% url 'learning_logs:delete_workout' workout.id%}" role="button" >Delete</a></h3>
+        </div>
+    {% empty %}
+    <p>There are no workouts yet.</p>
+    {% endfor %}
+</ul>
+
+<h3 style="padding-left: 40px;"><a href="{% url 'learning_logs:new_workout' %}" class="btn btn-lg btn-primary" role="button">Add a new workout!</a>
+</h3>
+{% endblock content %}

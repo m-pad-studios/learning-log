@@ -1,0 +1,29 @@
+{% extends 'learning_logs/base.html' %}
+{% block page_header %}
+<h3>{{ workout.name }}</h3>
+{% endblock page_header %}
+{% block content %}
+
+<ul >
+    <div class="card mb-3">
+        <h4 class="card-header">
+            {{ work.date_added|date:'M d, Y H:i' }}
+            <small><a href="{% url 'learning_logs:workouts' %}">
+                edit workout
+            </a></small>
+        </h4>
+        <div class="card-body">
+           Sets: {{ workout.sets }}
+           <br>
+           Reps: {{ workout.reps }}
+           <br>
+           PR Met Today: {{ workout.pr_met }}
+           <br>
+           {{workout.date_added}}
+
+        </div>
+        </div>
+</ul>
+
+
+{% endblock content %}

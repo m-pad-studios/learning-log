@@ -1,0 +1,83 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block page_header %}
+<h3>Custom charts based off {{user.username}}'s Archives</h3>
+
+{% endblock page_header %}
+
+{% block content %}
+
+
+<section class="section">
+    <section class="container">
+    <section class="content">
+        <div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
+    <canvas id="myChart" width="400" height="100" style="max-width: 90%;"></canvas>
+</div>
+    <br>
+    <div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
+    <canvas id="myEntries" width="400" height="100" style="max-width: 90%;"></canvas>
+    <br>
+    </div>
+    <div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
+    <canvas id="myWorkouts" width="400" height="100" style="max-width: 90%;"></canvas>
+</div>
+<div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
+    <canvas id="myPRs" width="400" height="100" style="max-width: 90%;"></canvas>
+</div>
+
+<script>
+var topics = document.getElementById('myChart');
+var myChart_1 = new Chart(topics, {
+type: 'bar',
+    data: {
+    labels: {{ user_topics|safe }},
+    datasets: [{
+label: 'Topics from every user',
+    data: {{ user_entries }},
+    backgroundColor: {{ choice_colours|safe }},
+    borderColor: {{ choice_border_colours|safe }},
+    borderWidth: 1
+}]
+},
+options: {
+scales: {
+xAxes: [{
+ticks: {
+beginAtZero: true,
+stepSize: 1
+}
+}]
+}
+}
+});
+
+var entries = document.getElementById('myEntries');
+var myChart_2 = new Chart(entries, {
+type: 'bar',
+data: {
+labels: {{ num_entries|safe }},
+datasets: [{
+label: '# of Your Entries',
+data: {{ num_entries|safe }},
+backgroundColor: {{ choice_color|safe }},
+borderColor: {{ choice_border_color|safe}},
+borderWidth: 1
+    }]
+    },
+    options: {
+    scales: {
+    xAxes: [{
+    ticks: {
+    beginAtZero: true,
+    stepSize: 1
+    }
+    }]
+    }
+    }
+    });
+</script>
+    </section>
+    </section>
+    </section>
+{% endblock %}

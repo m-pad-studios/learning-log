@@ -1,0 +1,16 @@
+.big_boy{
+    background-image: url("{% static 'images/thee_archive.jpg' %}"); 
+    background-position: center; 
+    background-repeat: no-repeat;
+}
+
+h1,
+h2,
+h3,
+p {
+    color: white;
+}
+
+#jumbo {
+    background-color: darkgray;
+}

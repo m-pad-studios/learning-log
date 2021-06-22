@@ -1,0 +1,9 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+<h1><a href="{% url 'learning_logs:topics' %}" >Back to topics &raquo;</a></h1>
+<div class="alert alert-success" role="alert">
+    Topic deleted!
+  </div>
+{% endblock page_header %}
