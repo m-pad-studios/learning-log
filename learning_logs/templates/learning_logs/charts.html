@@ -28,54 +28,19 @@
 
 <script>
 var topics = document.getElementById('myChart');
-var myChart_1 = new Chart(topics, {
-type: 'bar',
+
+var myChart = new Chart(topics, {
+    type: "bar",
+    title: "{{ topics_results}}",
     data: {
-    labels: {{ user_topics }},
-    datasets: [{
-label: 'Topics from every user',
-    data: {{ user_entries }},
-    backgroundColor: {{ choice_colours}},
-    borderColor: {{ choice_border_colours }},
-    borderWidth: 1
-}]
-},
-options: {
-scales: {
-xAxes: [{
-ticks: {
-beginAtZero: true,
-stepSize: 1
-}
-}]
-}
-}
+         labels: "{{labels}}",
+        datasets: [{
+           
+        }]
+    }
 });
 
-var entries = document.getElementById('myEntries');
-var myChart_2 = new Chart(entries, {
-type: 'bar',
-data: {
-labels: {{ num_entries }},
-datasets: [{
-label: '# of Your Entries',
-data: {{ num_entries }},
-backgroundColor: {{ choice_color }},
-borderColor: {{ choice_border_color}},
-borderWidth: 1
-    }]
-    },
-    options: {
-    scales: {
-    xAxes: [{
-    ticks: {
-    beginAtZero: true,
-    stepSize: 1
-    }
-    }]
-    }
-    }
-    });
+
 </script>
     </section>
     </section>

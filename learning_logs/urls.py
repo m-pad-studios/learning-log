@@ -34,4 +34,6 @@ urlpatterns = [
       path('delete_workout/<int:workout_id>/', views.delete_workout, name='delete_workout'),
       # Page for home dashboard when you login
       path('home_dash/', views.home_dash, name='home_dash'),
+      # Page for editing workouts
+      path('edit_workout/<int:workout_id>/', views.edit_workout, name='edit_workout')
 ]

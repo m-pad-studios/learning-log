@@ -1,0 +1,18 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+<h1><a href="{% url 'learning_logs:workout' workout.id %}" >{{ workout }}</a></h1>
+{% endblock page_header %}
+
+{% block content %}
+<form method="post" action="{% url 'learning_logs:edit_workout' workout.id %}"  class="form">
+{% csrf_token %}
+{% bootstrap_form form %}
+ {% buttons %}
+    <p><a name="submit" class="button-one" role="button" href="{% url 'learning_logs:workouts' %}">Save changes</a></p>
+{% endbuttons %}
+
+<input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+</form>
+{% endblock content %}

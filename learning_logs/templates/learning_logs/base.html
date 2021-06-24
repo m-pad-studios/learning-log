@@ -5,9 +5,11 @@
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/button-styles.css' %}">
+
     <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
-    <title>Logger</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <title>The Omni Logger</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         
    
 </script>
@@ -18,8 +20,8 @@
 
 <body class="big_boy" style="background-image: url({% static 'images/thee_archive.jpg' %}); background-position: center; background-repeat: no-repeat;">
     
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-4 border">
-      <a class="navbar-brand" href="{% url 'learning_logs:home_dash' %}">Thee Archive</a>
+  <nav class="navbar navbar-expand-md navbar-dark  mb-4 border" id="blue-bg">
+      <a class="navbar-brand" href="{% url 'learning_logs:home_dash' %}">The Omni Logger</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
       aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -28,7 +30,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 {% if user.is_authenticated %}
-                <a class="nav-link" href="{% url 'learning_logs:topics' %}">Projects</a>
+                <a class="nav-link" href="{% url 'learning_logs:topics' %}">Topics</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'learning_logs:charts' %}">Charts</a>

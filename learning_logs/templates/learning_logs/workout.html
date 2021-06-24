@@ -8,9 +8,7 @@
     <div class="card mb-3">
         <h4 class="card-header">
             {{ work.date_added|date:'M d, Y H:i' }}
-            <small><a href="{% url 'learning_logs:workouts' %}">
-                edit workout
-            </a></small>
+         
         </h4>
         <div class="card-body">
            Sets: {{ workout.sets }}
@@ -20,10 +18,11 @@
            PR Met Today: {{ workout.pr_met }}
            <br>
            {{workout.date_added}}
-
+            <br>
+            
         </div>
         </div>
 </ul>
-
+<p><a role="button" class="button-one" href="{% url 'learning_logs:workouts' %}">Back</a></p>
 
 {% endblock content %}

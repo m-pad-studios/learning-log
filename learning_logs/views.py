@@ -1,10 +1,12 @@
+import json
+
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse, Http404
+from django.http import  HttpResponse, Http404
 from django.db.models import Sum
 from .models import Topic, Entry, WorkoutCard
 from .forms import TopicForm, EntryForm, WorkoutForm
-
+from json import dumps
 #Pages section
 def index(request):
     """The home page for Learning Log."""
@@ -102,6 +104,27 @@ def edit_entry(request, entry_id):
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
 
+
+@login_required()
+def edit_workout(request, workout_id):
+    """Edit an existing entry."""
+    workout = WorkoutCard.objects.get(id=workout_id)
+    
+    # Make sure the proper owner is the one editing.
+    check_owner(request, workout)
+
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current entry.
+
+        form = WorkoutForm(instance=workout)
+    else:
+        # POST data submitted; process data.
+        form = WorkoutForm(instance=workout, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('learning_logs:topic', workout_id=workout.id)
+    context = { 'workout': workout, 'form': form}
+    return render(request, 'learning_logs/edit_workout.html', context)
 
 @login_required()
 def new_workout(request):
@@ -207,7 +230,7 @@ def check_topics(request, duplicate):
 
 
 def topic_chart(request):
-    topics = Topic.objects.order_by('date_added')
+    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     
     
     topics_sum = len(topics)
@@ -227,31 +250,23 @@ def topic_chart(request):
     # Entries data chart
     for topic in topics:
         
-        topic = Topic.objects.get(id=topic.id)
+        topic = Topic.objects.filter(owner=request.user).get(id=topic.id)
         entries = topic.entry_set.order_by('-date_added')
         for entry in entries:
-            entry_sum += 1
+            entry_sum += 1 + entry.id
             
     num_entries.append(entry_sum)
-
-    chart = {
-               'title':'Topics Results', 
-               'topics':topics, 
-               'user_topics':user_topics,
-               'user_entries':user_entries,
-               'choice_colours':['rgba(110, 255, 110, 0.55)'] * len(topics),
-               'choice_border_colours': ['rgba(0, 255, 0, 0.9)'] * len(topics),
-               'title':'Entries Results',
-
-                'topics':topics, 
-               'num_entries':num_entries,
-               'entry_sum':entry_sum,
-               'choice_color':['rgba(110, 252, 250, 0.55)'] * entry_sum,
-               'choice_border_color': ['rgba(0, 25, 250, 0.9)'] * entry_sum,
-             
-
+  
+    chart_list = {
+  
+            "title": "Test",
+            "label": "Time"
+           
+            
+        
     }
-    return chart
+
+    return chart_list
 
 def entries_chart():
     topics = Topic.objects.order_by('date_added')

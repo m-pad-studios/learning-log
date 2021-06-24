@@ -6,11 +6,40 @@
 
 h1,
 h2,
-h3,
+h3 {
+    color: white;
+ 
+    text-align: left;
+}
+
+
+a,
 p {
     color: white;
+    text-align: center;
+    font-size: 20px;
 }
 
 #jumbo {
-    background-color: darkgray;
+    background-color: skyblue;
+}
+
+#workout-card {
+    color: white;
+}
+
+#txt-white {
+    color: white;
+}
+
+#txt-black {
+    color: black;
+}
+
+#blue-bg {
+    background-color: skyblue;
+}
+
+.blug-bg {
+    background-color: skyblue;
 }

@@ -2,7 +2,8 @@
 {% load bootstrap4 %}
 
 {% block page_header %}
-<h1><a href="{% url 'learning_logs:topic' topic.id %}" >Back to entries &raquo;</a></h1>
+<h1><a href="{% url 'learning_logs:topic' topic.id %}" role="button" class="button-one">Back to entries &raquo;</a></h1>
+<br>
 <div class="alert alert-success" role="alert">
     Entry deleted!
   </div>
