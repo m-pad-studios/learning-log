@@ -12,13 +12,10 @@ h3 {
     text-align: left;
 }
 
-
-a,
 p {
-    color: white;
     text-align: center;
-    font-size: 20px;
 }
+
 
 #jumbo {
     background-color: skyblue;
@@ -32,6 +29,10 @@ p {
     color: white;
 }
 
+.txt-white {
+    color: white;
+}
+
 #txt-black {
     color: black;
 }
@@ -40,6 +41,10 @@ p {
     background-color: skyblue;
 }
 
-.blug-bg {
-    background-color: skyblue;
+#workout-txt {
+    font-size: 30px;
+}
+
+#light-gray-bg {
+    background-color: lightgray;
 }

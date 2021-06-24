@@ -24,7 +24,8 @@
         </div>
         </div>
     {% empty %}
-  <h4 id="txt-white">There are no entries for this topic yet.</h4>
+  <h4 id="light-gray-bg" class="card-header txt-white">There are no entries for this topic yet.</h4>
+  <br>
     {% endfor %}
     <p>
     <a href="{% url 'learning_logs:new_entry' topic.id %}" class=" button-one" role="button">Add new entry</a>

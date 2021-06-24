@@ -261,9 +261,6 @@ def topic_chart(request):
   
             "title": "Test",
             "label": "Time"
-           
-            
-        
     }
 
     return chart_list

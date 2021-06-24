@@ -2,7 +2,10 @@
 {% load bootstrap4 %}
 
 {% block page_header %}
-<h1><a href="{% url 'learning_logs:topics' %}" role="button" class="button-one" >Back to topics &raquo;</a></h1>
+<h1>
+  <button class="button-one" onclick="window.location.href={% url 'learning_logs:topics' %}">Back to topics &raquo;</button>
+
+</h1>
 <br>
 <div class="alert alert-success" role="alert">
     Topic deleted!

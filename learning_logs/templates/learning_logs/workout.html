@@ -1,28 +1,29 @@
 {% extends 'learning_logs/base.html' %}
 {% block page_header %}
-<h3>{{ workout.name }}</h3>
+<h3>Workout card detail</h3>
 {% endblock page_header %}
 {% block content %}
 
 <ul >
     <div class="card mb-3">
-        <h4 class="card-header">
-            {{ work.date_added|date:'M d, Y H:i' }}
+        <h4 class="card-header" >
+            {{  workout.name  }}
          
         </h4>
         <div class="card-body">
            Sets: {{ workout.sets }}
-           <br>
+           
+           <hr>
            Reps: {{ workout.reps }}
-           <br>
+           <hr>
            PR Met Today: {{ workout.pr_met }}
-           <br>
+           <hr>
            {{workout.date_added}}
-            <br>
+            <hr>
             
         </div>
         </div>
 </ul>
-<p><a role="button" class="button-one" href="{% url 'learning_logs:workouts' %}">Back</a></p>
-
+<p>
+   <button class="button-one" onclick="window.location.href={% url 'learning_logs:workouts' %}">Back</button></p>
 {% endblock content %}
