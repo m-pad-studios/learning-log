@@ -31,12 +31,12 @@ var topics = document.getElementById('myChart');
 var myChart_1 = new Chart(topics, {
 type: 'bar',
     data: {
-    labels: {{ user_topics|safe }},
+    labels: {{ user_topics }},
     datasets: [{
 label: 'Topics from every user',
     data: {{ user_entries }},
-    backgroundColor: {{ choice_colours|safe }},
-    borderColor: {{ choice_border_colours|safe }},
+    backgroundColor: {{ choice_colours}},
+    borderColor: {{ choice_border_colours }},
     borderWidth: 1
 }]
 },
@@ -56,12 +56,12 @@ var entries = document.getElementById('myEntries');
 var myChart_2 = new Chart(entries, {
 type: 'bar',
 data: {
-labels: {{ num_entries|safe }},
+labels: {{ num_entries }},
 datasets: [{
 label: '# of Your Entries',
-data: {{ num_entries|safe }},
-backgroundColor: {{ choice_color|safe }},
-borderColor: {{ choice_border_color|safe}},
+data: {{ num_entries }},
+backgroundColor: {{ choice_color }},
+borderColor: {{ choice_border_color}},
 borderWidth: 1
     }]
     },
