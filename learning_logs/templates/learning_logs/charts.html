@@ -1,118 +1,149 @@
-{% extends 'learning_logs/base.html' %}
+{% extends 'learning_logs/base.html' %} {% block page_header %}
+<h3>
+  Custom charts based off <span id="u-name">{{user.username}}</span>'s logs
+</h3>
 
-{% block page_header %}
-<h3>Custom charts based off <span id="u-name">{{user.username}}</span>'s Archives</h3>
-
-{% endblock page_header %}
-
-{% block content %}
-
+{% endblock page_header %} {% block content %}
 
 <section class="section">
-    <section class="container">
+  <section class="container">
     <section class="content">
-        <div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
-    <canvas id="myChart" width="400" height="100" style="max-width: 90%;"></canvas>
-</div>
-    <br>
-    <div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
-    <canvas id="myTopics" width="400" height="100" style="max-width: 90%;"></canvas>
-    <br>
-    </div>
-    <div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
-        
-    <canvas id="myWorkouts" width="400" height="100" style="max-width: 90%;"></canvas>
-</div>
-<div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
-    <canvas id="myPRs" width="400" height="100" style="max-width: 90%;"></canvas>
-</div>
+      <div class="card mb-3" style="background-color: rgb(68, 63, 63)">
+        <canvas
+          id="myChart"
+          width="400"
+          height="100"
+          style="max-width: 90%"
+        ></canvas>
+      </div>
+      <br />
+      <div class="card mb-3" style="background-color: rgb(68, 63, 63)">
+        <canvas
+          id="myTopics"
+          width="400"
+          height="100"
+          style="max-width: 90%"
+        ></canvas>
+        <br />
+      </div>
+      <div class="card mb-3" style="background-color: rgb(68, 63, 63)">
+        <canvas
+          id="myWorkouts"
+          width="400"
+          height="100"
+          style="max-width: 90%"
+        ></canvas>
+      </div>
+      <div class="card mb-3" style="background-color: rgb(68, 63, 63)">
+        <canvas
+          id="myPRs"
+          width="400"
+          height="100"
+          style="max-width: 90%"
+        ></canvas>
+      </div>
 
-<script>
-var topics = document.getElementById('myChart');
+      <script>
+        var topics = document.getElementById('myChart');
 
-var xValues = [100,200,300,400,500,600,700,800,900,1000];
+        var xValues = [100,200,300,400,500,600,700,800,900,1000];
 
-new Chart(topics, {
-  
-  type: "line",  
-  
-  data: {
-    labels: xValues,
-    datasets: [{ 
-      label: "TEST1",
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-      borderColor: "red",
-      fill: false,
-     
-    }, 
-    
-    { 
-        label: "TEST2",
-      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-      borderColor: "green",
-      fill: false
-    }, { 
-        label: "TEST3",
-      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
-      borderColor: "blue",
-      fill: false
-    }]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
+        new Chart(topics, {
 
-var myData= {{ serialized_data | safe}};
-var key = "workout";
-var graph = [myData[key]];
+          type: "line",
 
-for(var i = 0; i < graph.length; i++)
-{
-    graph[i] = myData[key];
-}
+          data: {
+            labels: xValues,
+            datasets: [{
+              label: "TEST1",
+              data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+              borderColor: "red",
+              fill: false,
 
-console.log(graph);
-console.log(myData);
-var userName = document.getElementById("u-name").innerHTML;
-var context = document.getElementById('myWorkouts').getContext('2d');
-var myChart = new Chart(context, {
-    type: 'bar',
-    data: {
-        labels: [userName],
-        datasets: [{
-            label: '# of Workouts from all users',
-            data: [graph, 5, 7, 8],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+            },
+
+            {
+                label: "TEST2",
+              data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+              borderColor: "green",
+              fill: false
+            }, {
+                label: "TEST3",
+              data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+              borderColor: "blue",
+              fill: false
+            }]
+          },
+          options: {
+            legend: {display: false}
+          }
+        });
+
+        var myData= {{ serialized_data | safe}};
+        var key = "workout";
+        var current_user = "logged_user";
+
+        var graph = [myData[key]];
+        var count = 0;
+        var count_array = [];
+
+        for(var i = 0; i < graph.length; i++)
+        {
+            graph[i] = myData[key];
+
         }
-    }
-});
 
-</script>
+        for(var i = 0; i < graph[0].length; i++) {
+            count += 1;
+            console.log(count);
+            count_array[i] = count;
+        }
+
+        console.log("The labels: " + count_array);
+        console.log("The array that holds the workouts ids:" + " " + graph);
+        console.log("The object that holds the workouts and current authenticated users id: ");
+
+        console.log(myData);
+
+        var userName = document.getElementById("u-name").innerHTML;
+        var context = document.getElementById('myWorkouts').getContext('2d');
+
+        var myChart = new Chart(context, {
+            type: 'bar',
+            data: {
+                labels: ["All users"],
+                datasets: [{
+                    label: '# of Workouts from all users',
+                    data: [count],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+      </script>
     </section>
-    </section>
-    </section>
+  </section>
+</section>
 {% endblock %}

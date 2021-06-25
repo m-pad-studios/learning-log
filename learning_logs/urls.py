@@ -23,7 +23,8 @@ urlpatterns = [
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
     # Page to view charts.
     path('charts/', views.charts, name='charts'),
-
+    # Page for starting a workout.
+    path('start_workout/', views.start_workout, name='start_workout'),
     # Page for creating workout cards
     path('new_workout/', views.new_workout, name='new_workout'),
     # Page to all your workout cards created 

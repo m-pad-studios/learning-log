@@ -36,10 +36,13 @@
                 <a class="nav-link" href="{% url 'learning_logs:charts' %}">Charts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'learning_logs:new_workout' %}">Create Workout</a>
+                <a class="nav-link" href="{% url 'learning_logs:new_workout' %}">Create workout</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'learning_logs:workouts' %}">View workouts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'learning_logs:start_workout' %}">Start workout</a>
             </li>
             {% endif %}
         </ul>
