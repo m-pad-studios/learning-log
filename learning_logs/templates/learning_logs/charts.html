@@ -79,7 +79,7 @@ var context = document.getElementById('myWorkouts').getContext('2d');
 var myChart = new Chart(context, {
     type: 'bar',
     data: {
-        labels: [1],
+        labels: [userName],
         datasets: [{
             label: '# of Workouts from all users',
             data: [graph, 5, 7, 8],

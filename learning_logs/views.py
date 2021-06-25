@@ -244,21 +244,22 @@ Charts start here
  """
 
 
-def charts_view():
- 
-    workout = WorkoutCard.objects.all()
-    name = []
-    context = {}
-    counter = 0
-    for w in workout:
-        name.append(w.name)
-        print(w.name)
-        context = {"workouts": w.name}
-        counter += 1
-    return counter
+
 
 @login_required()
 def charts(request):
+    def charts_view():
+ 
+        workout = WorkoutCard.objects.all()
+        name = []
+        context = {}
+        counter = 0
+        for w in workout:
+            name.append(w.name)
+            print(w.name)
+            context = {"workouts": w.name}
+            counter += 1
+        return counter
     ctx = {"workout": charts_view()}
     
     print(ctx)
