@@ -1,13 +1,14 @@
 import json
-
+from rest_framework.response import Response
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
-from django.http import  HttpResponse, Http404
+from django.http import Http404, HttpResponse, JsonResponse
 from django.db.models import Sum
 from .models import Topic, Entry, WorkoutCard
 from .forms import TopicForm, EntryForm, WorkoutForm
 from django.shortcuts import redirect
 from json import dumps
+from django.views.generic import TemplateView
 
 #Pages section
 
@@ -237,110 +238,38 @@ def check_topics(request, duplicate):
             return True
 
 
-def topic_chart(request):
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
-    
-    
-    topics_sum = len(topics)
-    user_topics = []
-    user_entries = []
+"""
+Charts start here
 
-    # Topic data chart
-    for topic in topics:
-        
-      user_topics.append(topic.text)
-      user_entries.append(topics_sum)
+ """
 
 
-    entry_sum = 0
-    num_entries = []
-    
-    # Entries data chart
-    for topic in topics:
-        
-        topic = Topic.objects.filter(owner=request.user).get(id=topic.id)
-        entries = topic.entry_set.order_by('-date_added')
-        for entry in entries:
-            entry_sum += 1 + entry.id
-            
-    num_entries.append(entry_sum)
-  
-    chart_list = {
-  
-            "title": "Test",
-            "label": "Time"
-    }
+def charts_view():
+ 
+    workout = WorkoutCard.objects.all()
+    name = []
+    context = {}
+    counter = 0
+    for w in workout:
+        name.append(w.name)
+        print(w.name)
+        context = {"workouts": w.name}
+        counter += 1
+    return counter
 
-    return chart_list
-
-def entries_chart():
-    topics = Topic.objects.order_by('date_added')
-    
-    entry_sum = 0
-    num_entries = []
-    
-    # Entries data chart
-    for topic in topics:
-        
-        topic = Topic.objects.get(id=topic.id)
-        entries = topics.entry_set.order_by('-date_added')
-        for entry in entries:
-            entry_sum += 1
-            
-    num_entries.append(entry_sum)
-    chart = {
-
-                'topics':topics, 
-               'num_entries':num_entries,
-               'entry_sum':entry_sum,
-               'choice_color':['rgba(110, 252, 250, 0.55)'] * entry_sum,
-               'choice_border_color': ['rgba(0, 25, 250, 0.9)'] * entry_sum,
-    }
-    return chart
 @login_required()
 def charts(request):
-    user_topics = topic_chart(request)
-
-
+    ctx = {"workout": charts_view()}
     
-   
-    workouts = WorkoutCard.objects.order_by('date_added')
+    print(ctx)
+    return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})
     
 
-    
-    workout_sum = len(workouts)
-    
-    pr_sum = 0
-
-    
-
-    
-
-    workout_names = []
-    num_workouts = []
-
-    # Workouts data chart
-    for workout in workouts:
-        workout_names.append(workout.name)
-        num_workouts.append(workout_sum)
-
-    pr_length = []
-    pr_nums = []
-    # PRs data from workouts chart
-    for workout in workouts:
-        
-        if workout.pr_met == True:
-            pr_length.append(workout.name)
-            pr_sum += 1
-            
-    pr_nums.append(pr_sum)
-    
-    context = {
-        'user_topics': user_topics,
       
-    }
-    
-    return render(request, 'learning_logs/charts.html', user_topics)
+
+
+
+
 
 def error_404_view(request, exception):
     data = {}

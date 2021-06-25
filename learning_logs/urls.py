@@ -23,6 +23,7 @@ urlpatterns = [
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
     # Page to view charts.
     path('charts/', views.charts, name='charts'),
+
     # Page for creating workout cards
     path('new_workout/', views.new_workout, name='new_workout'),
     # Page to all your workout cards created 
@@ -34,12 +35,12 @@ urlpatterns = [
     # Page that notifies topic has been deleted
     path('delete_topic/<int:topic_id>/', views.delete_topic, name='delete_topic'),
     # Page that notifies workout has been deleted
-      path('delete_workout/<int:workout_id>/', views.delete_workout, name='delete_workout'),
-      # Page for home dashboard when you login
-      path('home_dash/', views.home_dash, name='home_dash'),
-      # Page for editing workouts
-      path('edit_workout/<int:workout_id>/', views.edit_workout, name='edit_workout'),
-      # Page for 404
-    
+    path('delete_workout/<int:workout_id>/', views.delete_workout, name='delete_workout'),
+    # Page for home dashboard when you login
+    path('home_dash/', views.home_dash, name='home_dash'),
+    # Page for editing workouts
+    path('edit_workout/<int:workout_id>/', views.edit_workout, name='edit_workout'),
+    # Page for 404
+
    
 ]

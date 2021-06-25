@@ -1,7 +1,7 @@
 {% extends 'learning_logs/base.html' %}
 
 {% block page_header %}
-<h3>Custom charts based off {{user.username}}'s Archives</h3>
+<h3>Custom charts based off <span id="u-name">{{user.username}}</span>'s Archives</h3>
 
 {% endblock page_header %}
 
@@ -16,10 +16,11 @@
 </div>
     <br>
     <div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
-    <canvas id="myEntries" width="400" height="100" style="max-width: 90%;"></canvas>
+    <canvas id="myTopics" width="400" height="100" style="max-width: 90%;"></canvas>
     <br>
     </div>
     <div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
+        
     <canvas id="myWorkouts" width="400" height="100" style="max-width: 90%;"></canvas>
 </div>
 <div class="card mb-3" style="background-color: rgb(68, 63, 63);"> 
@@ -60,6 +61,54 @@ new Chart(topics, {
   options: {
     legend: {display: false}
   }
+});
+
+var myData= {{ serialized_data | safe}};
+var key = "workout";
+var graph = [myData[key]];
+
+for(var i = 0; i < graph.length; i++)
+{
+    graph[i] = myData[key];
+}
+
+console.log(graph);
+console.log(myData);
+var userName = document.getElementById("u-name").innerHTML;
+var context = document.getElementById('myWorkouts').getContext('2d');
+var myChart = new Chart(context, {
+    type: 'bar',
+    data: {
+        labels: [1],
+        datasets: [{
+            label: '# of Workouts from all users',
+            data: [graph, 5, 7, 8],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
 });
 
 </script>
