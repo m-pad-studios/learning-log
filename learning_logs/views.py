@@ -260,8 +260,9 @@ def charts(request):
             context = {"workouts": w.name}
             counter += 1
         return counter
-    ctx = {"workout": charts_view()}
-    
+
+    logged_user = request.user.id
+    ctx = {"workout": charts_view(), "logged_user": logged_user}
     print(ctx)
     return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})
     
