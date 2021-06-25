@@ -265,13 +265,6 @@ def charts(request):
     print(ctx)
     return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})
     
-
-      
-
-
-
-
-
 def error_404_view(request, exception):
     data = {}
     return render(request, 'learning_logs/404.html', data)
