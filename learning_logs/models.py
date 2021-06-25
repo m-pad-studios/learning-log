@@ -39,3 +39,5 @@ class WorkoutCard(models.Model):
     reps_completed = models.IntegerField()
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    

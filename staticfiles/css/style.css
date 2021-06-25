@@ -1,4 +1,65 @@
-.big_boy{
-    background-color: black;
-    /* background-image: url("learning_log/static/images/thee_archive.jpg"); */
+
+h1,
+h2,
+h3 {
+    color: white;
+ 
+    text-align: left;
+}
+
+p {
+    text-align: center;
+    font-size: large;
+}
+
+
+#jumbo {
+    background-color: skyblue;
+}
+
+#workout-card {
+    color: white;
+}
+
+#txt-white {
+    color: white;
+}
+
+.txt-white {
+    color: white;
+}
+
+#txt-black {
+    color: black;
+}
+
+#blue-bg {
+    background-color: skyblue;
+}
+
+#workout-txt {
+    font-size: 30px;
+}
+
+#light-gray-bg {
+    background-color: lightgray;
+}
+
+#white-bg {
+    background-color: white;
+}
+
+#big-boy {
+    background-image: url("/static/images/thee_archive.jpg"); 
+    background-position: center;
+    margin-bottom: 550px;
+
+}
+
+#lrg-txt {
+    font-size: larger;
+}
+
+#dark-blue-bg {
+    background-color: rgba(17, 107, 167, 0.746);
 }

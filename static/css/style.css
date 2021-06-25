@@ -1,8 +1,3 @@
-.big_boy{
-    background-image: url("{% static 'images/thee_archive.jpg' %}"); 
-    background-position: center; 
-    background-repeat: no-repeat;
-}
 
 h1,
 h2,
@@ -14,6 +9,7 @@ h3 {
 
 p {
     text-align: center;
+    font-size: large;
 }
 
 
@@ -48,3 +44,23 @@ p {
 #light-gray-bg {
     background-color: lightgray;
 }
+
+#white-bg {
+    background-color: white;
+}
+
+#big-boy {
+    background-image: url("/static/images/thee_archive.jpg"); 
+    background-position: center;
+    margin-bottom: 550px;
+
+}
+
+#lrg-txt {
+    font-size: larger;
+}
+
+#dark-blue-bg {
+    background-color: rgba(17, 107, 167, 0.746);
+}
+

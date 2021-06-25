@@ -6,8 +6,11 @@ from django.http import  HttpResponse, Http404
 from django.db.models import Sum
 from .models import Topic, Entry, WorkoutCard
 from .forms import TopicForm, EntryForm, WorkoutForm
+from django.shortcuts import redirect
 from json import dumps
+
 #Pages section
+
 def index(request):
     """The home page for Learning Log."""
     
@@ -20,13 +23,18 @@ def home_dash(request):
 
 @login_required()
 def topic(request, topic_id):
+    
     """Show a single topic and all its entries. """
-    topic = Topic.objects.get(id=topic_id)
-    check_owner(request, topic)
+    try:
+        topic = Topic.objects.get(id=topic_id)
+        check_owner(request, topic)
+        
+        entries = topic.entry_set.order_by('-date_added')
+        context = {'topic': topic, 'entries': entries}
+        return render(request, 'learning_logs/topic.html', context)
+    except entries.DoesNotExist:
+        return (request, 'learning_logs/404.html')
 
-    entries = topic.entry_set.order_by('-date_added')
-    context = {'topic': topic, 'entries': entries}
-    return render(request, 'learning_logs/topic.html', context)
 
 @login_required()
 def topics(request):
@@ -122,7 +130,7 @@ def edit_workout(request, workout_id):
         form = WorkoutForm(instance=workout, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('learning_logs:topic', workout_id=workout.id)
+            return redirect('learning_logs:workout', workout_id=workout.id)
     context = { 'workout': workout, 'form': form}
     return render(request, 'learning_logs/edit_workout.html', context)
 
@@ -205,7 +213,7 @@ def check_owner(request, topic_id):
     topic = topic_id
     # Make sure the topic belongs to the current user.
     if topic.owner != request.user:
-        raise Http404
+        return render(request, 'learning_logs/404.html')
 
 def check_topics(request, duplicate):
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')
@@ -333,3 +341,8 @@ def charts(request):
     }
     
     return render(request, 'learning_logs/charts.html', user_topics)
+
+def error_404_view(request, exception):
+    data = {}
+    return render(request, 'learning_logs/404.html', data)
+    

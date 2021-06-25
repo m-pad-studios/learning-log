@@ -2,11 +2,14 @@
 
 {% block page_header %}
 <div class="jumbotron" id="jumbo">
-    <h1 class="display-4">A personal logger of anything. The Omni Logger will track anything you desire and build beautiful charts off of what you log!</h1>
-
-    <p class="lead">If not already an omni logger than register right below so you can get to logging.</p>
-
-    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}" role="button">Register &raquo;</a>
+    <h1 class="display-4"> The Omni Logger </h1>
+<hr>
+    <p class="card-header" id="white-bg">A personal logger of anything will track anything you desire and build beautiful charts off of what you log!
+        <br> 
+        If not already an omni logger than register right below so you can get to logging.</p>
+        <br>
+    <a class="button-one" href="{% url 'users:register' %}" role="button">Register &raquo;</a>
+    
 </div>
 {% endblock page_header %}
 
@@ -14,22 +17,36 @@
 <div class="container">
     <div class="row">
         <div class="col col-md-4 mb-3">
-            <div class="card h-100"  style="background-color: darkgrey;">
-                <p class="card-body">Create an omni log and add entries to each log or add an entry to a public omni log.</p>
-              <div style="text-align:center; padding-bottom: 25px;">  <a class="btn btn-lg btn-primary" href="{% url 'learning_logs:topics' %}" role="button">Omni Logs Archive</a></div>
+            <div class="card h-100 light-gray-bg">
+                <p class="card-body" id="lrg-txt">Create an omni log and add entries to each log or add an entry to a public omni log.</p>
+              
             </div>
+            <div id="create-omni-log-btn">
+                <button class="button-one" onclick="window.location.href={% url 'learning_logs:topics' %}">Omni Logs &raquo;</button> 
+          </div>
         </div>
         <div class="col col-md-4 mb-3"  >
-            <div class="card h-100"  style="background-color: darkgrey;">
-                <p class="card-body">Simple customizable workout cards that allow for easy access and also can be grouped into a 'deck'.</p>
-                <div style="text-align:center; padding-bottom: 25px;">  <a class="btn btn-lg btn-primary" href="{% url 'learning_logs:new_workout' %}" role="button">Create an Omni Log Project</a></div>
+            <div class="card h-100 light-gray-bg">
+                <p class="card-body" id="lrg-txt">Simple customizable workout cards that allow for easy access and also can be grouped into a 'deck'.</p>
+    
             </div>
+            <div id="chart-btn">
+                <button class="button-one" onclick="window.location.href={% url 'learning_logs:workouts' %}">Create workout &raquo;</button> 
+          </div>
             </div>
+
                 <div class="col col-md-4 mb-3" >
-                    <div class="card h-100"  style="background-color: darkgrey;">
-                        <p class="card-body">The Omni Logger tracks everything a user does and prints them out in customizable charts.</p>
-                        <div style="text-align:center; padding-bottom: 25px;">  <a class="btn btn-lg btn-primary" href="{% url 'learning_logs:charts' %}" role="button">Charts</a></div>
+                    <div class="card h-100 light-gray-bg">
+                        <p class="card-body" id="lrg-txt">The Omni Logger tracks everything a user does and prints them out in customizable charts.   
+                            <br>
+                            
+                         </p>
+                         
+                    </div> 
+                    <div id="chart-btn">
+                          <button class="button-one" onclick="window.location.href={% url 'learning_logs:charts' %}">Charts &raquo;</button> 
                     </div>
+                  
                     </div>
         </div>
     </div>

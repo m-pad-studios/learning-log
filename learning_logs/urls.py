@@ -1,10 +1,13 @@
 """Defines URL patterns for learning_logs. """
 
 from django.urls import path
-
-from . import views
+from django.conf.urls import handler404, handler500, handler403, handler400
+from learning_logs import views
 
 app_name = 'learning_logs'
+
+handler404 = 'learning_logs.views.error_404_view'
+
 urlpatterns = [
     #Home page 
     path('', views.index, name='index'),
@@ -35,5 +38,8 @@ urlpatterns = [
       # Page for home dashboard when you login
       path('home_dash/', views.home_dash, name='home_dash'),
       # Page for editing workouts
-      path('edit_workout/<int:workout_id>/', views.edit_workout, name='edit_workout')
+      path('edit_workout/<int:workout_id>/', views.edit_workout, name='edit_workout'),
+      # Page for 404
+    
+   
 ]
