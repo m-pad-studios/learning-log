@@ -44,7 +44,8 @@
         ></canvas>
       </div>
       <!-- All users workouts chart starts here -->
-      <script>
+      <script >
+
            var myData= {{ serialized_data | safe }};
          var key = "workout";
         var current_user = "logged_user";
@@ -112,7 +113,7 @@
       <!-- All users workouts chart ends here -->
 
             <!-- All users topics chart starts here -->
-      <script>
+      <script >
 
         var context = document.getElementById('myTopics').getContext('2d');
         var topics = {{ serialized_data | safe}};
@@ -172,7 +173,7 @@
       <!-- All users topics chart ends here -->
 
             <!-- All users workouts & topics chart starts here -->
-      <script>
+      <script >
 
         var context_2 = document.getElementById('myChart').getContext('2d');
         var topics = {{ serialized_data | safe}};
@@ -255,8 +256,8 @@
 <!-- All users workouts & topics chart ends here -->
 
 <!-- Current authenticated users workouts & topics chart starts here -->
-      <script>
-
+      <script >
+     
         var context_2 = document.getElementById('myStats').getContext('2d');
         var context = document.getElementById('myStats').getContext('2d');
 
