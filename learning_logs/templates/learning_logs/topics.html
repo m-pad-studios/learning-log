@@ -1,27 +1,35 @@
-{% extends "learning_logs/base.html" %}
-{% block page_header %}
-<h3 class="card-header" >Topics</h3>
-{% endblock page_header %}
+{% extends "learning_logs/base.html" %} {% block page_header %}
+<h3 class="card-header">Topics</h3>
+{% endblock page_header %} {% block content %}
 
-{% block content %}
-
-<ul >
-    {% for topic in topics %}
-    <div class="card mb-3" >
-        <a href="{% url 'learning_logs:topic' topic.id%}">
-        <h4 class="card-header" >
-                {{ topic }}
-        </h4>
-        <br>
-        <p style="padding-left: 15px;"><a class="btn btn-lg btn-danger" href="{% url 'learning_logs:delete_topic' topic.id%}" role="button" >Delete</a></p>
+<ul>
+  {% for topic in topics %}
+  <div class="card mb-3">
+    <a href="{% url 'learning_logs:topic' topic.id%}">
+      <h4 class="card-header">{{ topic }}</h4>
+      <br />
+      <p style="padding-left: 15px">
+        <a
+          class="btn btn-lg btn-danger"
+          href="{% url 'learning_logs:delete_topic' topic.id%}"
+          role="button"
+          >Delete</a
+        >
+      </p>
     </a>
-</div>
-    {% empty %}
-    <h4 class="card-header" id="light-gray-bg"><p>There are no entries for this topic yet.</p></h4>
-    {% endfor %}
+  </div>
+  {% empty %}
+  <h4 class="card-header" id="light-gray-bg">
+    <p>There are no entries for this topic yet.</p>
+  </h4>
+  {% endfor %}
 </ul>
-<p>  
-     <button class="button-one" onclick="window.location.href={% url 'learning_logs:new_topic' %}">Add a new topic</button>
-
+<p>
+  <button
+    class="button-one"
+    onclick="window.location.href={% url 'learning_logs:new_topic' %}"
+  >
+    Add a new topic
+  </button>
 </p>
 {% endblock content %}

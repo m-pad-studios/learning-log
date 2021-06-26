@@ -42,6 +42,7 @@
           style="max-width: 90%"
         ></canvas>
       </div>
+      <!-- All users workouts chart starts here -->
       <script>
            var myData= {{ serialized_data | safe }};
          var key = "workout";
@@ -105,11 +106,13 @@
                     }
                 }
             }
-        }); 
+        });
       </script>
+      <!-- All users workouts chart ends here -->
 
+            <!-- All users topics chart starts here -->
       <script>
-  
+
         var context = document.getElementById('myTopics').getContext('2d');
         var topics = {{ serialized_data | safe}};
         var key = "topic";
@@ -165,7 +168,9 @@
             }
         });
       </script>
+      <!-- All users topics chart ends here -->
 
+            <!-- All users workouts & topics chart starts here -->
       <script>
 
         var context_2 = document.getElementById('myChart').getContext('2d');
@@ -245,10 +250,11 @@
                 }
             }
         });
-
       </script>
+<!-- All users workouts & topics chart ends here -->
 
-<script>
+<!-- Current authenticated users workouts & topics chart starts here -->
+      <script>
 
         var context_2 = document.getElementById('myStats').getContext('2d');
         var context = document.getElementById('myStats').getContext('2d');
@@ -264,14 +270,14 @@
         console.log(graph_3[0][1].length);
 
         topic_data = graph_3[0][0];
-   
+
         console.log(topic_data);
 
         workout_data = graph_3[0][1];
 
         console.log(workout_data);
 
-       
+
 
         var myChart = new Chart(context, {
             type: 'pie',
@@ -307,9 +313,8 @@
                 }
             }
         });
-
-</script>
-
+      </script>
+      <!-- Current authenticated users workouts & topics chart ends here -->
     </section>
   </section>
 </section>

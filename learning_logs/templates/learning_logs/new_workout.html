@@ -1,18 +1,17 @@
-{% extends "learning_logs/base.html" %}
-{% load bootstrap4 %}
-
-{% block page_header %}
+{% extends "learning_logs/base.html" %} {% load bootstrap4 %} {% block
+page_header %}
 <h2>Add a new workout card</h2>
-{% endblock page_header %}
+{% endblock page_header %} {% block content %}
 
-{% block content %}
-
-<form action="{% url 'learning_logs:new_workout' %}" method='post' class="form" id="workout-card">
-    {% csrf_token %}
-      {% bootstrap_form form %}
-    {% buttons %}
-   <p><button name="submit" class="button-one">Add workout</button></p> 
-{% endbuttons %}
-      <input type="hidden" name="next" value="{% url 'learning_logs:workouts' %}" />
+<form
+  action="{% url 'learning_logs:new_workout' %}"
+  method="post"
+  class="form"
+  id="workout-card"
+>
+  {% csrf_token %} {% bootstrap_form form %} {% buttons %}
+  <p><button name="submit" class="button-one">Add workout</button></p>
+  {% endbuttons %}
+  <input type="hidden" name="next" value="{% url 'learning_logs:workouts' %}" />
 </form>
 {% endblock content %}

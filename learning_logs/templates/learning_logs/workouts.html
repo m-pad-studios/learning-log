@@ -1,32 +1,41 @@
-{% extends "learning_logs/base.html" %}
-{% block page_header %}
+{% extends "learning_logs/base.html" %} {% block page_header %}
 <h3>Workout Cards</h3>
-{% endblock page_header %}
+{% endblock page_header %} {% block content %}
 
-{% block content %}
-
-<ul >
-    {% for workout in workouts %}
-    <div class="card mb-3"> 
-        <a href="{% url 'learning_logs:workout' workout.id %}">
-        <h4 class="card-header">
-                {{ workout.name }}   
-        </h4><br>
+<ul>
+  {% for workout in workouts %}
+  <div class="card mb-3">
+    <a href="{% url 'learning_logs:workout' workout.id %}">
+      <h4 class="card-header">{{ workout.name }}</h4>
+      <br />
     </a>
-   <p><a class="button-two" href="{% url 'learning_logs:edit_workout' workout.id%}" role="button">
+    <p>
+      <a
+        class="button-two"
+        href="{% url 'learning_logs:edit_workout' workout.id%}"
+        role="button"
+      >
         Edit workout
-    </a>  
-    <a class="button-three" href="{% url 'learning_logs:delete_workout' workout.id%}" role="button" >Delete</a>
-  
-</p> 
-
-        </div>
-    {% empty %}
-    <p>There are no workouts yet.</p>
-    {% endfor %}
+      </a>
+      <a
+        class="button-three"
+        href="{% url 'learning_logs:delete_workout' workout.id%}"
+        role="button"
+        >Delete</a
+      >
+    </p>
+  </div>
+  {% empty %}
+  <p>There are no workouts yet.</p>
+  {% endfor %}
 </ul>
 
 <p>
-    <button class="button-one" onclick="window.location.href={% url 'learning_logs:new_workout' %}">Add a new workout</button>
+  <button
+    class="button-one"
+    onclick="window.location.href={% url 'learning_logs:new_workout' %}"
+  >
+    Add a new workout
+  </button>
 </p>
 {% endblock content %}

@@ -1,10 +1,10 @@
-{% extends "learning_logs/base.html" %}
-{% load bootstrap4 %}
-
-{% block page_header %}
-<h1><a href="{% url 'learning_logs:workouts' %}" role="button" class="button-one">Back to workouts &raquo;</a></h1>
-<br>
-<div class="alert alert-success" role="alert">
-    Workout deleted!
-  </div>
+{% extends "learning_logs/base.html" %} {% load bootstrap4 %} {% block
+page_header %}
+<h1>
+  <a href="{% url 'learning_logs:workouts' %}" role="button" class="button-one"
+    >Back to workouts &raquo;</a
+  >
+</h1>
+<br />
+<div class="alert alert-success" role="alert">Workout deleted!</div>
 {% endblock page_header %}
