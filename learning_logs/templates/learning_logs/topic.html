@@ -1,7 +1,9 @@
-{% extends 'learning_logs/base.html' %} {% block page_header %}
+{% extends 'learning_logs/base.html' %} 
+{% block page_header %}
 <h3>{{ topic }}</h3>
 
-{% endblock page_header %} {% block content %}
+{% endblock page_header %} 
+{% block content %}
 
 <ul>
   {% for entry in entries %}
