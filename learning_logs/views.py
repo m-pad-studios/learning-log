@@ -272,6 +272,7 @@ def charts(request):
             context = {"workouts": w.name}
             counter.append(w.id)
         return counter
+
     def topics_charts():
         user_topics = Topic.objects.all()
         name = []
@@ -284,11 +285,43 @@ def charts(request):
             counter.append(tp.id)
         return counter
 
+    def my_own_charts():
+
+        my_topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+        my_workouts = WorkoutCard.objects.filter(owner=request.user).order_by('date_added')
+
+    
+        my_topic_name = []
+        context = {}
+        counter = []
+        counter_2 = []
+        total_counters = []
+
+        for tp in my_topics:
+            my_topic_name.append(tp.text)
+            print(tp.text)
+            context = {"my_topics": tp.text}
+            counter.append(tp.id)
+
+
+        my_workout_name = []
+        context_2 = {}
+
+        for w in my_workouts:
+            my_workout_name.append(w.name)
+            print(w.name)
+            context_2 = {"my_workouts": w.name}
+            counter_2.append(w.id)
+
+        total_counters.append(counter)
+        total_counters.append(counter_2)
+        return total_counters
+
         
     logged_user = request.user.id    
     
     
-    ctx = {"workout": charts_view(), "topic": topics_charts(), "logged_user": logged_user}
+    ctx = {"workout": charts_view(), "topic": topics_charts(), "my_stats": my_own_charts(), "logged_user": logged_user}
     print(ctx)
 
     return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})
