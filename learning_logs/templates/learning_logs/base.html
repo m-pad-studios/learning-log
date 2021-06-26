@@ -21,6 +21,8 @@
 <body id="big-boy">
     
   <nav class="navbar navbar-expand-md navbar-dark  mb-4 border" id="dark-blue-bg">
+    <a class="navbar-brand" href="{% url 'learning_logs:index' %}">About Page</a>
+      {% if user.is_authenticated %}
       <a class="navbar-brand" href="{% url 'learning_logs:home_dash' %}">The Omni Logger</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +31,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                {% if user.is_authenticated %}
+                
                 <a class="nav-link" href="{% url 'learning_logs:topics' %}">Topics</a>
             </li>
             <li class="nav-item">
