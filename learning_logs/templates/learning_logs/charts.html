@@ -4,8 +4,9 @@
   Custom charts based off <span id="u-name">{{user.username}}</span>'s logs
 </h3>
 
-{% endblock page_header %} {% block content %}
-
+{% endblock page_header %} 
+{% block content %}
+{% if user.is_authenticated %}
 <section class="section">
   <section class="container">
     <section class="content">
@@ -43,6 +44,7 @@
           style="max-width: 90%"
         ></canvas>
       </div>
+      {% endif %}
       <!-- All users workouts chart starts here -->
       <script >
 
