@@ -259,6 +259,7 @@ Charts start here
 
 @login_required()
 def charts(request):
+
     def charts_view():
 
         workout = WorkoutCard.objects.all()
@@ -271,10 +272,25 @@ def charts(request):
             context = {"workouts": w.name}
             counter.append(w.id)
         return counter
+    def topics_charts():
+        user_topics = Topic.objects.all()
+        name = []
+        context = {}
+        counter = []
+        for tp in user_topics:
+            name.append(tp.text)
+            print(tp.text)
+            context = {"topics": tp.text}
+            counter.append(tp.id)
+        return counter
 
-    logged_user = request.user.id
-    ctx = {"workout": charts_view(), "logged_user": logged_user}
+        
+    logged_user = request.user.id    
+    
+    
+    ctx = {"workout": charts_view(), "topic": topics_charts(), "logged_user": logged_user}
     print(ctx)
+
     return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})
 
 
@@ -306,8 +322,10 @@ Start workouts view starts here
 
 @login_required()
 def start_workout(request):
-
-    return render(request, 'learning_logs/start_workout.html')
+    workouts = WorkoutCard.objects.filter(
+        owner=request.user).order_by('date_added')
+    context = {'workouts': workouts}
+    return render(request, 'learning_logs/start_workout.html', context)
 
 
 """ 

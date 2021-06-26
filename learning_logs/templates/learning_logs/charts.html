@@ -42,44 +42,8 @@
           style="max-width: 90%"
         ></canvas>
       </div>
-
       <script>
-        var topics = document.getElementById('myChart');
-
-        var xValues = [100,200,300,400,500,600,700,800,900,1000];
-
-        new Chart(topics, {
-
-          type: "line",
-
-          data: {
-            labels: xValues,
-            datasets: [{
-              label: "TEST1",
-              data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-              borderColor: "red",
-              fill: false,
-
-            },
-
-            {
-                label: "TEST2",
-              data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-              borderColor: "green",
-              fill: false
-            }, {
-                label: "TEST3",
-              data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
-              borderColor: "blue",
-              fill: false
-            }]
-          },
-          options: {
-            legend: {display: false}
-          }
-        });
-
-        var myData= {{ serialized_data | safe}};
+           var myData= {{ serialized_data | safe }};
         var key = "workout";
         var current_user = "logged_user";
 
@@ -116,7 +80,145 @@
                     label: '# of Workouts from all users',
                     data: [count],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(34, 139, 34, 0.2)',
+                        'rgba(34, 139, 34, 0.2)',
+                        'rgba(34, 139, 34, 0.2)',
+                        'rgba(34, 139, 34, 0.2)',
+                        'rgba(34, 139, 34, 0.2)',
+                        'rgba(34, 139, 34, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(34, 139, 34, 1)',
+                        'rgba(34, 139, 34, 1)',
+                        'rgba(34, 139, 34, 1)',
+                        'rgba(34, 139, 34, 1)',
+                        'rgba(34, 139, 34, 1)',
+                        'rgba(34, 139, 34, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+      </script>
+
+      <script>
+  
+        var context = document.getElementById('myTopics').getContext('2d');
+        var topics = {{ serialized_data | safe}};
+        var key = "topic";
+        var graph_2 = [topics[key]];
+        var count = 0;
+        var count_array = [];
+        console.log(topics);
+        for(var i = 0; i < graph_2.length; i++)
+        {
+            graph[i] = myData[key];
+
+        }
+
+        for(var i = 0; i < graph_2[0].length; i++) {
+            count += 1;
+            console.log(count);
+            count_array[i] = count;
+        }
+
+
+        var myChart = new Chart(context, {
+            type: 'bar',
+            data: {
+                labels: ["All topics"],
+                datasets: [{
+                    label: '# of Topics from all users',
+                    data: [count],
+                    backgroundColor: [
+                        'rgba(135,206,235, 0.2)',
+                        'rgba(135,206,235, 0.2)',
+                        'rgba(135,206,235, 0.2)',
+                        'rgba(135,206,235, 0.2)',
+                        'rgba(135,206,235, 0.2)',
+                        'rgba(135,206,235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(135,206,235, 1)',
+                        'rgba(135,206,235, 1)',
+                        'rgba(135,206,235, 1)',
+                        'rgba(135,206,235, 1)',
+                        'rgba(135,206,235, 1)',
+                        'rgba(135,206,235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+      </script>
+
+      <script>
+
+        var context_2 = document.getElementById('myChart').getContext('2d');
+        var topics = {{ serialized_data | safe}};
+        var key_2 = "topic";
+        var graph_2 = [topics[key]];
+        var count_2 = 0;
+        var count_array_2 = [];
+        console.log(topics);
+        for(var i = 0; i < graph_2.length; i++)
+        {
+            graph_2[i] = topics[key_2];
+
+        }
+
+        for(var i = 0; i < graph_2[0].length; i++) {
+            count_2 += 1;
+            console.log(count_2);
+            count_array_2[i] = count_2;
+        }
+
+
+        var myData= {{ serialized_data | safe }};
+        var key = "workout";
+        var current_user = "logged_user";
+        var context = document.getElementById('myChart').getContext('2d');
+
+        var graph = [myData[key]];
+        var count = 0;
+        var count_array = [];
+
+        for(var i = 0; i < graph.length; i++)
+        {
+            graph[i] = myData[key];
+
+        }
+
+        for(var i = 0; i < graph[0].length; i++) {
+            count += 1;
+            console.log(count);
+            count_array[i] = count;
+        }
+
+
+        var myChart = new Chart(context, {
+            type: 'bar',
+            data: {
+                labels: ["All workouts", "All topics"],
+                datasets: [{
+                    label: '# of Workouts & Topics from all users',
+                    data: [count,count_2],
+                    backgroundColor: [
+                        'rgba(34, 139, 34, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
@@ -124,7 +226,7 @@
                         'rgba(255, 159, 64, 0.2)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
+                        'rgba(34, 139, 34, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
@@ -142,7 +244,11 @@
                 }
             }
         });
+
       </script>
+
+
+
     </section>
   </section>
 </section>
