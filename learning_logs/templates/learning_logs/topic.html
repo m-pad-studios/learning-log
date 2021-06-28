@@ -37,15 +37,13 @@
   <br />
   {% endfor %}
 
-  <p>
-    <button
-      class="button-one"
-      onclick="window.location.href"
-      ="{% url 'learning_logs:new_entry' topic.id %}"
-    >
+  <div>
+
+    <a class="button-one" href="{% url 'learning_logs:new_entry' topic.id%}" role="button">
       Add entry
-    </button>
-  </p>
+    </a>
+   
+  </div>
 </ul>
 
 {% endblock content %}

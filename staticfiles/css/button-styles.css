@@ -81,13 +81,13 @@ h1, button{
   }
 
   #chart-btn {
-    margin-top: 25px;
+    margin-bottom: 25px;
     text-align: center;
     margin-right: 35px;
   }
   
   #create-omni-log-btn {
-    margin-top: 25px;
+    margin-bottom: 25px;
     text-align: center;
     margin-right: 35px;
   } 

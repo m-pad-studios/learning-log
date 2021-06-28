@@ -1,4 +1,6 @@
-
+body {
+    background: #050895d8;
+}
 h1,
 h2,
 h3 {
@@ -45,8 +47,8 @@ p {
     background-color: lightgray;
 }
 
-#white-bg {
-    background-color: white;
+#white-bag {
+    color: black;
 }
 
 #big-boy {
@@ -63,3 +65,8 @@ p {
 #dark-blue-bg {
     background-color: rgba(17, 107, 167, 0.746);
 }
+
+#stop-watch {
+  
+    background-color: white;
+ }

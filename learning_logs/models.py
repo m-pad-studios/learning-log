@@ -40,4 +40,6 @@ class WorkoutCard(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
+#This is where WorkoutDecks will go. A new model that will have a WorkoutCard as FK and become a deck.
+
     

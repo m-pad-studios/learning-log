@@ -7,9 +7,9 @@
 {% endblock page_header %} 
 {% block content %}
 {% if user.is_authenticated %}
-<section class="section">
-  <section class="container">
-    <section class="content">
+
+  <div class="container">
+   
       <div class="card mb-3" style="background-color: rgb(68, 63, 63)">
         <canvas
           id="myChart"
@@ -44,11 +44,14 @@
           style="max-width: 90%"
         ></canvas>
       </div>
-      {% endif %}
+      {% endif %}  
+    
+</div>
       <!-- All users workouts chart starts here -->
       <script >
+// TODO: move all this to external JS file when static files are working for production mode.
 
-           var myData= {{ serialized_data | safe }};
+var myData= {{ serialized_data | safe }};
          var key = "workout";
         var current_user = "logged_user";
 
@@ -76,8 +79,7 @@
 
         var userName = document.getElementById("u-name").innerHTML;
         var context = document.getElementById('myWorkouts').getContext('2d');
-
-        var myChart = new Chart(context, {
+ var myChart = new Chart(context, {
             type: 'bar',
             data: {
                 labels: ["All users"],
@@ -111,12 +113,16 @@
                 }
             }
         });
+
+
+           
+       
       </script>
       <!-- All users workouts chart ends here -->
 
             <!-- All users topics chart starts here -->
       <script >
-
+ var userName = document.getElementById("u-name").innerHTML;
         var context = document.getElementById('myTopics').getContext('2d');
         var topics = {{ serialized_data | safe}};
         var key = "topic";
@@ -320,7 +326,6 @@
       </script>
 
       <!-- Current authenticated users workouts & topics chart ends here -->
-    </section>
-  </section>
-</section>
+ 
+
 {% endblock %}

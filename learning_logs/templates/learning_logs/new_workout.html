@@ -11,8 +11,10 @@
   id="workout-card"
 >
   {% csrf_token %} {% bootstrap_form form %} {% buttons %}
-  <p><button name="submit" class="button-one">Add workout</button></p>
+  <button name="submit" class="button-one">Add workout</button>
   {% endbuttons %}
   <input type="hidden" name="next" value="{% url 'learning_logs:workouts' %}" />
 </form>
+
+
 {% endblock content %}

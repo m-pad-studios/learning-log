@@ -17,6 +17,11 @@ p {
 
 #jumbo {
     background-color: skyblue;
+   
+}
+
+#space {
+    height: 1500px;
 }
 
 #workout-card {
@@ -35,6 +40,7 @@ p {
     color: black;
 }
 
+
 #blue-bg {
     background-color: skyblue;
 }
@@ -48,13 +54,22 @@ p {
 }
 
 #white-bg {
-    background-color: white;
+    color: black;
+  background-color: white;
+}
+
+#stop-watch {
+  
+   background-color: white;
 }
 
 #big-boy {
-    background-image: url("/static/images/thee_archive.jpg"); 
-    background-position: center;
-    margin-bottom: 550px;
+
+background: url("/static/images/thee_archive.jpg") no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
 
 }
 
@@ -65,4 +80,5 @@ p {
 #dark-blue-bg {
     background-color: rgba(17, 107, 167, 0.746);
 }
+
 

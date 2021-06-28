@@ -8,6 +8,46 @@
 </div>
 {% endblock page_header %}
 
+
 {% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="row">
+        <div class="col col-md-4 mb-3">
+            <div class="card h-100 light-gray-bg">
+                <p class="card-body" id="lrg-txt">Create an omni log and add entries to each log or add an entry to a public omni log.</p>
+              <div id="create-omni-log-btn">
+                <button class="button-one" onclick="window.location.href={% url 'learning_logs:topics' %}">Omni Logs &raquo;</button> 
+          </div>
+            </div>
+            
+        </div>
+        <div class="col col-md-4 mb-3"  >
+            <div class="card h-100 light-gray-bg">
+                <p class="card-body" id="lrg-txt">Simple customizable workout cards that allow for easy access and also can be grouped into a 'deck'.</p>
+         <div id="chart-btn">
+                <button class="button-one" onclick="window.location.href={% url 'learning_logs:workouts' %}">Create workout &raquo;</button> 
+          </div>
+            </div>
+       
+            </div>
+
+                <div class="col col-md-4 mb-3" >
+                    <div class="card h-100 light-gray-bg">
+                        <p class="card-body" id="lrg-txt">The Omni Logger tracks everything a user does and prints them out in customizable charts.   
+                            <br>
+                            
+                         </p>
+                            <div id="chart-btn">
+                          <button class="button-one" onclick="window.location.href={% url 'learning_logs:charts' %}">Charts &raquo;</button> 
+                    </div>
+                    </div> 
+                 
+                  
+                    </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
 
 {% endblock content %}

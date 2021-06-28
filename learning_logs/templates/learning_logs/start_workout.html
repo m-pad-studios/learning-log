@@ -1,118 +1,167 @@
 {% extends "learning_logs/base.html" %} 
 {% block page_header %}
+
 <h3>Choose a workout to start</h3>
-<div class="wrapper">
-  <h1>Stopwatch</h1>
-  <h2>
-    <p><span id="seconds">00</span>:<span id="tens">00</span></p>
-  </h2>
-</div>
+
 {% endblock page_header %} 
 {% block content %}
+{% if user.is_authenticated %}
+<div class="container">
 
-<div class="card">
-  <div
-    id="carouselExampleIndicators"
-    class="carousel slide"
-    data-ride="carousel"
-  >
-    <ol class="carousel-indicators">
-      <li
-        data-target="#carouselExampleIndicators"
-        data-slide-to="0"
-        class="active"
-      ></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-           
-              <div class="card mb-3">
-                {% for workout in workouts %}
-              {% if workout.id == 10 %}
-             
-              <h4 class="card-header">
-                {{ workout.name }}
-                <hr />
-                {{ workout.sets}}
-                <hr />
-                {{ workout.reps }}
-    
-              </h4> 
-              {% endif %}
-              {% endfor %}
-            </div>
-   
-          
-      </div>
-      <div class="carousel-item">
-        
-           <div class="card mb-3">
-          {% for workout in workouts %}
-            {% if workout.id == 13 %}
-           
-            <h4 class="card-header">
-
-              {{ workout.name }}
-              <hr />
-              {{ workout.sets}}
-              <hr />
-              {{ workout.reps }}
-       
-            </h4>
-            {% endif %}
-          </div>
-          {% endfor %}
-        
-      </div>
-      <div class="carousel-item">
-      
-          
-       <div class="card mb-3">
-              {% for workout in workouts %}
-            {% if workout.id == 12 %}
-               
-            <h4 class="card-header">
-              {{ workout.name }}
-              <hr />
-              {{ workout.sets}}
-              <hr />
-              {{ workout.reps }}
-           
-            {% endif %}
-          </div>
-          {% endfor %}
+  <div class="card">
+{% for workout in workouts %}
+      {% if workout.id == 1 %}
      
-      </div>
-    </div>
-    <a
-      class="carousel-control-prev"
-      href="#carouselExampleIndicators"
-      role="button"
-      data-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a
-      class="carousel-control-next"
-      href="#carouselExampleIndicators"
-      role="button"
-      data-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+      <h4 class="card-header">
+        {{ workout.name }}
+      <hr />
+      Sets:  {{ workout.sets}}
+        <hr class="card-header">
+      Reps:  {{ workout.reps }}
+        <hr class="card-header">
+      </h4> 
+      <hr style=" 
+      width: 50%;
+       margin: auto;
+       margin-top: 5%;
+       margin-bottom: 5%;
+       border: 3px dashed #1A85FD;">
+      {% elif workout.id == 2 %}
+         
+      <h4 class="card-header">
+        {{ workout.name }}
+        <hr >
+      Sets:  {{ workout.sets}}
+        <hr class="card-header">
+      Reps:  {{ workout.reps }}
+        <hr class="card-header">
+      </h4>
+      <hr style=" 
+      width: 50%;
+       margin: auto;
+       margin-top: 5%;
+       margin-bottom: 5%;
+       border: 3px dashed #1A85FD;">
+      {% elif workout.id == 3 %}
+                 
+      <h4 class="card-header">
+        {{ workout.name }}
+        <hr />
+      Sets:  {{ workout.sets}}
+        <hr class="card-header">
+      Reps:  {{ workout.reps }}
+        <hr class="card-header">
+      {% endif %}
+   
+    {% endfor %}
   </div>
+  <br>
+
+
+<div></div>
+ 
+   <h3 class="card-header" id="white-bg" >Stopwatch: <span id="seconds"> 00 </span>: <span id="tens">00</span></h3> 
+ 
+
+  <br />
+  <div class="card-header">
+      <button class="button-one" id="button-start">Start workout</button>
+
+  <button class="button-one" id="button-stop">Stop workout</button>
+ 
+  <button class="button-one" id="button-reset">Reset workout</button>
+ 
+  </div>
+
 </div>
 
-<p>
-  <br />
-  <button class="button-one" id="button-start">Start workout</button>
-  <button class="button-one" id="button-stop">Stop workout</button>
-  <button class="button-one" id="button-reset">Reset workout</button>
-</p>
 
-<script src="/static/js/start_workout.js"></script>
+{% endif %}
+
+
+
+
+
+<script>
+
+// TODO: For now this JS will be here but it should be moved to external file. I will get static files working in production mode later. 
+
+(function() {
+
+  window.onload = function () {
+    var seconds = 00;
+    var tens = 00;
+    var appendTens = document.getElementById("tens");
+    var appendSeconds = document.getElementById("seconds");
+    var buttonStart = document.getElementById("button-start");
+    var buttonStop = document.getElementById("button-stop");
+    var buttonReset = document.getElementById("button-reset");
+    var Interval;
+
+    buttonStop.hidden = true;
+
+  
+
+    buttonStart.onclick = function () {
+      buttonStart.hidden = true;
+      buttonStart.disabled = true;
+
+      buttonStop.hidden = false;
+      buttonStop.disabled = false;
+      clearInterval(Interval);
+      Interval = setInterval(startTimer, 10);
+    };
+
+    buttonStop.onclick = function () {
+
+        buttonStop.hidden = true;
+        buttonStop.disabled = true;
+
+        buttonStart.hidden = false;
+        buttonStart.disabled = false;
+
+      clearInterval(Interval);
+    };
+
+    buttonReset.onclick = function () {
+     
+      
+      clearInterval(Interval);
+      tens = "00";
+      seconds = "00";
+      appendTens.innerHTML = tens;
+      appendSeconds.innerHTML = seconds;
+     
+    
+    };
+
+    function startTimer() {
+      tens++;
+
+      if (tens <= 9) {
+        appendTens.innerHTML = "0" + tens;
+      }
+
+      if (tens > 9) {
+        appendTens.innerHTML = tens;
+      }
+
+      if (tens > 99) {
+        console.log("seconds");
+        seconds++;
+        appendSeconds.innerHTML = "0" + seconds;
+        tens = 0;
+        appendTens.innerHTML = "0" + 0;
+      }
+
+      if (seconds > 9) {
+        appendSeconds.innerHTML = seconds;
+      }
+    }
+  };
+
+
+})();
+
+</script>
 {% endblock content %}

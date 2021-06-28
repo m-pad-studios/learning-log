@@ -2,15 +2,12 @@
 {% load bootstrap4 %} 
 {% block page_header %}
 <h2>Add a new entry to: {{ topic }}</h2>
-{% endblock page_header %} {% block content %}
+{% endblock page_header %} 
+{% block content %}
 
-<form
-  action="{% url 'learning_logs:new_entry' topic.id %}"
-  method="post"
-  class="form"
->
+<form action="{% url 'learning_logs:new_entry' topic.id %}" method="post" >
   {% csrf_token %} {% bootstrap_form form %} {% buttons %}
-  <p><button name="submit" class="button-one">Add entry</button></p>
+  <button name="submit" class="button-one">Save entry</button>
   {% endbuttons %}
   <input type="hidden" name="next" value="{% url 'learning_logs:topics' %}" />
 </form>
