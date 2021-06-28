@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     #My apps
     'learning_logs',
     'users',
+    'polls',
 
     #Third party apps.
     'bootstrap4',

@@ -38,6 +38,7 @@ p {
 
 #txt-black {
     color: black;
+    background-color: white;
 }
 
 
@@ -57,6 +58,7 @@ p {
     color: black;
   background-color: white;
 }
+
 
 #stop-watch {
   
@@ -82,3 +84,6 @@ background-size: cover;
 }
 
 
+#polls-banner {
+    text-align: center;
+}

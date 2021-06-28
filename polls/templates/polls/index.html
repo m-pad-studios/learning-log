@@ -1,0 +1,24 @@
+{% extends "learning_logs/base.html" %}
+{% block page_header %}
+<div class="jumbotron" id="dark-blue-bg" >
+    <h1 class="display-4" > 
+        <span class="navbar-text">Welcome to the daily Polls!
+            <hr/>
+            <span class="navbar-text">Quick cast your vote today.</span>
+    </h1>
+    
+</div>
+
+{% endblock page_header %}
+
+{% block content %}
+{% if latest_question_list %}
+    <ul class="card">
+    {% for question in latest_question_list %}
+    <li><h1><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></h1></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% endblock content %}
