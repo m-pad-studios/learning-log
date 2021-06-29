@@ -1,4 +1,4 @@
-
+// IIFE for faster load time.
 (function() {
 
   window.onload = function () {
