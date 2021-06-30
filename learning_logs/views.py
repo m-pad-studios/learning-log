@@ -272,16 +272,91 @@ Charts
 def charts(request):
 
     def charts_view():
-        question = Question.objects.all()
+        q = Question.objects.get(pk=1)
       
+        color_name = []
+        context = {}
+    
+
+        color_name.append(q.choice_set.all())
+        print(color_name)
+
+        blue = str(color_name[0][0])
+        red = str(color_name[0][1])
+        orange = str(color_name[0][2])
+        green = str(color_name[0][3])
+        purple = str(color_name[0][4])
+        yellow = str(color_name[0][5])
+        black = str(color_name[0][6])
+        white = str(color_name[0][7])
+        
+        bv = color_name[0][0].votes
+        rv = color_name[0][1].votes
+        ov = color_name[0][2].votes
+        gv = color_name[0][3].votes
+        pv = color_name[0][4].votes
+        yv = color_name[0][5].votes
+        blv = color_name[0][6].votes
+        wv = color_name[0][7].votes
+
+        votes = [bv,rv,ov,gv,pv,yv,blv, wv]
+        context["votes"] = votes
+    
+        if blue == "Blue":
+            print("BLUE")
+          
+            context["blue"] = blue
+            
+        
+        if red == "Red":
+            print("RED")
+
+            context["red"] = red
+        
+        if orange == "Orange":
+            print("ORANGE")
+
+            context["orange"] = orange
+
+        if green == "Green":
+            print("GREEN")
+
+            context["green"] = green
+
+        if purple == "Purple":
+            print("PURPLE")
+
+            context["purple"] = purple
+
+        if yellow == "Yellow":
+            print("YELLOW")
+
+            context["yellow"] = yellow
+
+        if black == "Black":
+            print("BLACK")
+
+            context["black"] = black
+
+        if white == "White":
+            print("WHITE")
+
+            context["white"] = white 
+
+
+     
+        return context
+
+    def workouts_charts():
+        user_workouts = WorkoutCard.objects.all()
         name = []
         context = {}
         counter = []
-        for q in question:
-            name.append(q.question_text)
-            print(q.question_text)
-            context = {"workout": q.question_text}
-            counter.append(q.id)
+        for wrk in user_workouts:
+            name.append(wrk.name)
+            #print(wrk.name)
+            context = {"workouts": wrk.name}
+            counter.append(wrk.id)
         return counter
 
     def topics_charts():
@@ -291,7 +366,7 @@ def charts(request):
         counter = []
         for tp in user_topics:
             name.append(tp.text)
-            print(tp.text)
+            #print(tp.text)
             context = {"topics": tp.text}
             counter.append(tp.id)
         return counter
@@ -310,7 +385,7 @@ def charts(request):
 
         for tp in my_topics:
             my_topic_name.append(tp.text)
-            print(tp.text)
+            #print(tp.text)
             context = {"my_topics": tp.text}
             counter.append(tp.id)
 
@@ -320,7 +395,7 @@ def charts(request):
 
         for w in my_workouts:
             my_workout_name.append(w.name)
-            print(w.name)
+            #print(w.name)
             context_2 = {"my_workouts": w.name}
             counter_2.append(w.id)
 
@@ -332,7 +407,7 @@ def charts(request):
     logged_user = request.user.id    
     
     
-    ctx = {"workout": charts_view(), "topic": topics_charts(), "my_stats": my_own_charts(), "logged_user": logged_user}
+    ctx = {"workouts": workouts_charts(), "topics": topics_charts(), "polls_color": charts_view(), "my_stats": my_own_charts(), "logged_user": logged_user}
     print(ctx)
 
     return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})

@@ -68,6 +68,13 @@
 <script>
     var context = document.getElementById('myStats').getContext('2d');
     var my_info = {{ serialized_data | safe}};
+
+    
+
+    $("#div1").hide();
+        $("#div2").hide();
+        $("#div3").hide();
+        $("#div4").hide();
 </script>
 <script src="/static/js/my_stats.js" type="text/javascript"></script>
 {% endblock %}

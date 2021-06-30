@@ -1,27 +1,21 @@
 
         var context_2 = document.getElementById('myChart').getContext('2d');
         
-        var key_2 = "topic";
+        var key_2 = "topics";
         var graph_2 = [topics[key]];
         var count_2 = 0;
         var count_array_2 = [];
-        console.log(topics);
+        //console.log(topics);
 
         for(var i = 0; i < graph_2.length; i++)
         {
             graph_2[i] = topics[key_2];
-
-        }
-
-        for(var i = 0; i < graph_2[0].length; i++) {
             count_2 += 1;
-            console.log(count_2);
-            count_array_2[i] = count_2;
         }
 
 
      
-        var key = "workout";
+        var key = "workouts";
         var current_user = "logged_user";
         var context = document.getElementById('myChart').getContext('2d');
 
@@ -37,7 +31,7 @@
 
         for(var i = 0; i < graph[0].length; i++) {
             count += 1;
-            console.log(count);
+          //  console.log(count);
             count_array[i] = count;
         }
 
@@ -52,18 +46,15 @@
                     backgroundColor: [
                         'rgba(34, 139, 34, 0.5)',
                         'rgba(54, 162, 235, 0.5)',
-                        'rgba(255, 206, 86, 0.5)',
-                        'rgba(75, 192, 192, 0.5)',
-                        'rgba(153, 102, 255, 0.5)',
-                        'rgba(255, 159, 64, 0.5)'
+               
                     ],
                     borderColor: [
-                        'rgba(34, 139, 34, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
+                        'rgb(0, 0, 0)',
+                        'rgb(0, 0, 0)',
+                        'rgb(0, 0, 0)',
+                        'rgb(0, 0, 0)',
+                        'rgb(0, 0, 0)',
+                        'rgb(0, 0, 0)'
                     ],
                     borderWidth: 1
                 }]

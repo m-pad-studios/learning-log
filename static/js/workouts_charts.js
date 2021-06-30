@@ -5,24 +5,20 @@ var current_user = "logged_user";
 
 var graph = [myData[key]];
 var count = 0;
-var count_array = [];
+
 
 for (var i = 0; i < graph.length; i++) {
     graph[i] = myData[key];
-
+count += 1;
 };
 
-for (var i = 0; i < graph[0].length; i++) {
-    count += 1;
-    console.log(count);
-    count_array[i] = count;
-};
 
-console.log("The labels: " + count_array);
-console.log("The array that holds the workouts ids:" + " " + graph);
-console.log("The object that holds the workouts and current authenticated users id: ");
 
-console.log(myData);
+//console.log("The labels: " + count_array);
+//console.log("The array that holds the workouts ids:" + " " + graph);
+//console.log("The object that holds the workouts and current authenticated users id: ");
+
+//console.log(myData);
 
 var userName = document.getElementById("u-name").innerHTML;
 var context = document.getElementById('myWorkouts').getContext('2d');
@@ -35,7 +31,7 @@ var myChart = new Chart(context, {
             label: '# of Workouts from all users',
             data: [count],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
+                'rgba(5, 9, 132, 0.5)',
                 'rgba(54, 162, 235, 0.5)',
                 'rgba(255, 206, 86, 0.5)',
                 'rgba(75, 192, 192, 0.5)',
@@ -43,7 +39,7 @@ var myChart = new Chart(context, {
                 'rgba(255, 159, 64, 0.5)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
+                'rgb(0, 0, 0)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
