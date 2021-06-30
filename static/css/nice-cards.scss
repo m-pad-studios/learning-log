@@ -23,7 +23,7 @@ $gr-3:linear-gradient(170deg, #C86DD7 0%, #3023AE 100%);
   margin-top:3rem;
   padding-left:3rem;
   &:hover{
-    padding-left:0;
+ 
     .card .txt{
       margin-left:1rem;
       h1, p{
@@ -79,9 +79,8 @@ $gr-3:linear-gradient(170deg, #C86DD7 0%, #3023AE 100%);
       display: inline-block;
       height: 0.5em;
       width: 0;
-      margin-right: -100%;
-      margin-left: 10px;
-      border-top: 1px solid rgba(255,255,255,1);
+  
+ 
       transition: .5s;
     }
   }

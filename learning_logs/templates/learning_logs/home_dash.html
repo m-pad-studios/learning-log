@@ -13,42 +13,59 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<div class="container">
-    <div class="row">
-        <div class="col col-md-4 mb-3">
-            <div class="card h-100 light-gray-bg">
-                <p class="card-body" id="lrg-txt">Create an omni log and add entries to each log or add an entry to a public omni log.</p>
-              <div id="create-omni-log-btn">
-                <button class="button-one" onclick="window.location.href={% url 'learning_logs:topics' %}">Omni Logs &raquo;</button> 
-          </div>
-            </div>
-            
-        </div>
-        <div class="col col-md-4 mb-3"  >
-            <div class="card h-100 light-gray-bg">
-                <p class="card-body" id="lrg-txt">Simple customizable workout cards that allow for easy access and also can be grouped into a 'deck'.</p>
-         <div id="chart-btn">
-                <button class="button-one" onclick="window.location.href={% url 'learning_logs:workouts' %}">Create workout &raquo;</button> 
-          </div>
-            </div>
-       
-            </div>
 
-                <div class="col col-md-4 mb-3" >
-                    <div class="card h-100 light-gray-bg">
-                        <p class="card-body" id="lrg-txt">The Omni Logger tracks everything a user does and prints them out in customizable charts.   
-                            <br>
-                            
-                         </p>
-                            <div id="chart-btn">
-                          <button class="button-one" onclick="window.location.href={% url 'learning_logs:charts' %}">Charts &raquo;</button> 
-                    </div>
-                    </div> 
-                 
-                  
-                    </div>
+
+    <div class="container h-100">
+        <div class="row align-middle">
+          <div class="col-md-6 col-lg-4 column">
+            <div class="card gr-1">
+              <div class="txt">
+                <h1>Topics</h1>
+                <p>Create an omni log and add entries to each log or add an entry to a public omni log.
+                     <br>
+                     <br> 
+                     <br>
+                     <button class="btn btn-lg" onclick="window.location.href={% url 'learning_logs:topics' %}" style="background-color: greenyellow;">Go</button></p>
+              </div>
+           
+              <div class="ico-card">
+              <i class="fa fa-rebel"></i>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 column">
+            <div class="card gr-1">
+              <div class="txt">
+                <h1>Charts</h1>
+                <p>Head on over and customize the look and feel of your charts. The more you log the more is tracked!                                                      
+            <br>
+            <br>
+            <br>
+   
+           
+                    <button class="btn btn-lg" onclick="window.location.href={% url 'learning_logs:charts' %}" style="background-color: greenyellow;">Go</button></p>
+              </div>
+          
+            <div class="ico-card">
+              <i class="fa fa-codepen"></i>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 column">
+            <div class="card gr-1">
+              <div class="txt">
+                <h1>Community Polls</h1>
+                <p>Like answering random questions and seeing the results automatically printed in a beautiful chart? Then head on over to vote by clicking the link below! <br> <br> <button class="btn btn-lg" onclick="window.location.href={% url 'polls:index' %}" style="background-color: greenyellow;">Go</button></p>
+              </div>
+      
+            <div class="ico-card">
+              <i class="fa fa-empire"></i>
+            </div>
+            </div>
+          </div>
+          
         </div>
-    </div>
+      </div>
     {% endif %}
 </div>
 

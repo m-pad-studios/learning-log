@@ -4,29 +4,25 @@
 <div class="jumbotron" id="dark-blue-bg">
     <h1 class="display-4"> The Omni Logger </h1>
 <hr>
-    <p class="card-header" id="white-bg">A personal logger of anything will track anything you desire and build beautiful charts off of what you log!
+    <p class="card-header" id="white-bg">A personal logger that will track anything you want and build beautiful charts off of the data!
         <br> 
         If not already an omni logger than register right below so you can get to logging.</p>
-        <br>
-    <a class="button-one" href="{% url 'users:register' %}" role="button">Register &raquo;</a>
-    <br>
-    <br>
-    <a class="button-one" href="{% url 'polls:index' %}" role="button">Off to the polls! &raquo;</a>
 
-    
 </div>
-
-
+{% endblock page_header %}
+{% block content %}
 <div class="container h-100">
     <div class="row align-middle">
       <div class="col-md-6 col-lg-4 column">
         <div class="card gr-1">
           <div class="txt">
-            <h1>BRANDING AND </br>
-  CORPORATE DESIGN</h1>
-            <p>Visual communication and problem-solving</p>
+            <h1>Register an account</h1>
+            <p>If you're currently not a member click the Register link below to sign up today.
+              <br>
+              <br>
+            </p>
           </div>
-          <a href="#">more</a>
+          <a href="{% url 'users:register' %}" role="button">Register </a>
           <div class="ico-card">
           <i class="fa fa-rebel"></i>
         </div>
@@ -35,11 +31,10 @@
       <div class="col-md-6 col-lg-4 column">
         <div class="card gr-2">
           <div class="txt">
-            <h1>Web Front-End </br>
-  SOLUTIONS</h1>
-            <p>How design is implemented on the web.</p>
+            <h1>Community Polls</h1>
+            <p>Like answering random questions and seeing the results automatically printed in a beautiful chart? Click the link below to vote!</p>
           </div>
-          <a href="#">more</a>
+          <a  href="{% url 'polls:index' %}" role="button">Off to the polls!</a>
         <div class="ico-card">
           <i class="fa fa-codepen"></i>
         </div>
@@ -48,10 +43,14 @@
       <div class="col-md-6 col-lg-4 column">
         <div class="card gr-3">
           <div class="txt">
-            <h1>UX/UI WEBsite </br>AND MOBILE app</h1>
-            <p>User Interface and User Experience Design.</p>
+            <h1>Already an Omni Logger</h1>
+            <p>Click the link below to log back in!
+              <br>
+              <br>
+              <br>
+            </p>
           </div>
-          <a href="#">more</a>
+          <a href="{% url 'users:login' %}" role="button">Login</a>
         <div class="ico-card">
           <i class="fa fa-empire"></i>
         </div>
@@ -60,4 +59,4 @@
       
     </div>
   </div>
-{% endblock page_header %}
+{% endblock content %}
