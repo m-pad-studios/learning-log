@@ -24,31 +24,35 @@
 
     });
         
-        var key = "topic";
+        var key = "workout";
         var graph_2 = [topics_2[key]];
         var count = 0;
         var count_array = [];
+       
+
         console.log(topics);
         for(var i = 0; i < graph_2.length; i++)
         {
             graph_2[i] = myData[key];
+         
 
         }
 
         for(var i = 0; i < graph_2[0].length; i++) {
             count += 1;
             console.log(count);
-            count_array[i] = count;
+            count_array.push(count);
+          
         }
 
-
+console.log(graph_2);
         var myChart = new Chart(context, {
-            type: 'bar',
+            type: 'line',
             data: {
-                labels: ["All topics"],
+                labels: [1,2],
                 datasets: [{
                     label: '# of Topics from all users',
-                    data: [count],
+                    data: [graph_2[0].length],
                     backgroundColor: [
                         'rgba(135,206,235, 0.5)',
                         'rgba(135,206,235, 0.5)',

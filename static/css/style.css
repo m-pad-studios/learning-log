@@ -1,11 +1,12 @@
 body {
     background: #050895d8;
 }
+
 h1,
 h2,
 h3 {
     color: white;
- 
+
     text-align: left;
 }
 
@@ -17,7 +18,7 @@ p {
 
 #jumbo {
     background-color: skyblue;
-   
+
 }
 
 #space {
@@ -56,22 +57,22 @@ p {
 
 #white-bg {
     color: black;
-  background-color: white;
+    background-color: white;
 }
 
 
 #stop-watch {
-  
-   background-color: white;
+
+    background-color: white;
 }
 
 #big-boy {
 
-background: url("/static/images/thee_archive.jpg") no-repeat center center fixed; 
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
+    background: url("/static/images/thee_archive.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 
 }
 
@@ -87,4 +88,3 @@ background-size: cover;
 #polls-banner {
     text-align: center;
 }
-

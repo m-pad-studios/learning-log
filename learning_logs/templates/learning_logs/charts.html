@@ -40,6 +40,7 @@
 
 
 <script>
+//Shows data for all users. Users are anonymous
     var context_2 = document.getElementById('myChart').getContext('2d');
     var context = document.getElementById('myTopics').getContext('2d');
     var topics = {{ serialized_data | safe}};
@@ -47,17 +48,22 @@
 </script>
 <script src="/static/js/my_chart.js" type="text/javascript"></script>
 
+
 <script>
+//Shows data for current logged in user. Topics & Workouts.
     var userName = document.getElementById("u-name").innerHTML;
     var context = document.getElementById('myTopics').getContext('2d');
     var topics_2 = {{ serialized_data | safe}};
 </script>
 <script src="/static/js/topics_charts.js" type="text/javascript"></script>
 
+
 <script>
     var myData = {{ serialized_data | safe}};
 </script>
 <script src="/static/js/workouts_charts.js" type="text/javascript"></script>
+
+
 
 <script>
     var context = document.getElementById('myStats').getContext('2d');

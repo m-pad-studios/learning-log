@@ -6,12 +6,16 @@ from django.http import Http404, HttpResponse, JsonResponse
 from django.db.models import Sum
 from .models import Topic, Entry, WorkoutCard
 from .forms import TopicForm, EntryForm, WorkoutForm
+from polls.models import Choice, Question
 from django.shortcuts import redirect
 from json import dumps
 from django.views.generic import TemplateView
 
 # Pages section
 
+""" 
+Home pages
+"""
 
 def index(request):
     """The home page for Learning Log."""
@@ -24,7 +28,15 @@ def home_dash(request):
     """The main dashboard for users"""
     return render(request, 'learning_logs/home_dash.html')
 
+def check_owner(request, topic_id):
 
+    topic = topic_id
+    # Make sure the topic belongs to the current user.
+    if topic.owner != request.user:
+        return render(request, 'learning_logs/404.html')
+"""
+Topic pages
+"""
 @login_required()
 def topic(request, topic_id):
     """Show a single topic and all its entries. """
@@ -34,18 +46,48 @@ def topic(request, topic_id):
 
         entries = topic.entry_set.order_by('-date_added')
         context = {'topic': topic, 'entries': entries}
-        return render(request, 'learning_logs/topic.html', context)
+        return render(request, 'learning_logs/blogging/topic.html', context)
     except entries.DoesNotExist:
         return (request, 'learning_logs/404.html')
 
+@login_required()
+def delete_topic(request, topic_id):
+    """Delete topic and all its entries. """
+    topic = Topic.objects.get(id=topic_id)
+
+    topic.delete()
+    context = {}
+    return render(request, 'learning_logs/blogging/delete_topic.html', context)
 
 @login_required()
 def topics(request):
     """Show all topics."""
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     context = {'topics': topics}
-    return render(request, 'learning_logs/topics.html', context)
+    return render(request, 'learning_logs/blogging/topics.html', context)
 
+
+@login_required()
+def check_topics(request, duplicate):
+    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    copy = ""
+    copy = str(duplicate)
+    nw_copy = copy.strip().lower()
+    copy_topics = []
+
+    print("~~~~~~~~~~~~")
+    print(nw_copy)
+    print("~~~~~~~~~~~~~~~~~")
+    for topic in topics:
+        tp_copy = str(topic.text)
+        nw_tp_copy = tp_copy.lower()
+        copy_topics.append(nw_tp_copy)
+
+    for topic in copy_topics:
+
+        if nw_copy == topic:
+            print("CAN'T HAVE DUPLICATE TOPIC")
+            return True
 
 @login_required()
 def new_topic(request):
@@ -71,8 +113,11 @@ def new_topic(request):
             return redirect('learning_logs:topics')
     # Display a blank or invalid form.
     context = {'form': form}
-    return render(request, 'learning_logs/new_topic.html', context)
+    return render(request, 'learning_logs/blogging/new_topic.html', context)
 
+"""
+Entry pages
+"""
 
 @login_required()
 def new_entry(request, topic_id):
@@ -93,7 +138,7 @@ def new_entry(request, topic_id):
             return redirect('learning_logs:topic', topic_id=topic_id)
     # Display a blank or invalid form.
     context = {'topic': topic, 'form': form}
-    return render(request, 'learning_logs/new_entry.html', context)
+    return render(request, 'learning_logs/blogging/new_entry.html', context)
 
 
 @login_required()
@@ -115,8 +160,31 @@ def edit_entry(request, entry_id):
             form.save()
             return redirect('learning_logs:topic', topic_id=topic.id)
     context = {'entry': entry, 'topic': topic, 'form': form}
-    return render(request, 'learning_logs/edit_entry.html', context)
+    return render(request, 'learning_logs/blogging/edit_entry.html', context)
 
+@login_required()
+def delete_entry(request, entry_id):
+    """Delete an existing entry."""
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+    # Make sure the proper owner is the one editing.
+    check_owner(request, topic)
+
+    entry.delete()
+    context = {'entry': entry, 'topic': topic}
+    return render(request, 'learning_logs/blogging/delete_entry.html', context)
+
+
+"""
+Workout pages
+"""
+
+@login_required()
+def start_workout(request):
+    workouts = WorkoutCard.objects.filter(
+        owner=request.user).order_by('date_added')
+    context = {'workouts': workouts}
+    return render(request, 'learning_logs/fitness/start_workout.html', context)
 
 @login_required()
 def edit_workout(request, workout_id):
@@ -137,7 +205,7 @@ def edit_workout(request, workout_id):
             form.save()
             return redirect('learning_logs:workout', workout_id=workout.id)
     context = {'workout': workout, 'form': form}
-    return render(request, 'learning_logs/edit_workout.html', context)
+    return render(request, 'learning_logs/fitness/edit_workout.html', context)
 
 
 @login_required()
@@ -165,7 +233,7 @@ def new_workout(request):
             return redirect('learning_logs:workouts')
     # Display a blank or invalid form.
     context = {'form': form}
-    return render(request, 'learning_logs/new_workout.html', context)
+    return render(request, 'learning_logs/fitness/new_workout.html', context)
 
 
 @login_required()
@@ -174,7 +242,7 @@ def workout(request, workout_id):
     workout = WorkoutCard.objects.get(id=workout_id)
 
     context = {'workout': workout}
-    return render(request, 'learning_logs/workout.html', context)
+    return render(request, 'learning_logs/fitness/workout.html', context)
 
 
 @login_required()
@@ -183,30 +251,7 @@ def workouts(request):
     workouts = WorkoutCard.objects.filter(
         owner=request.user).order_by('date_added')
     context = {'workouts': workouts}
-    return render(request, 'learning_logs/workouts.html', context)
-
-
-@login_required()
-def delete_entry(request, entry_id):
-    """Delete an existing entry."""
-    entry = Entry.objects.get(id=entry_id)
-    topic = entry.topic
-    # Make sure the proper owner is the one editing.
-    check_owner(request, topic)
-
-    entry.delete()
-    context = {'entry': entry, 'topic': topic}
-    return render(request, 'learning_logs/delete_entry.html', context)
-
-
-@login_required()
-def delete_topic(request, topic_id):
-    """Delete topic and all its entries. """
-    topic = Topic.objects.get(id=topic_id)
-
-    topic.delete()
-    context = {}
-    return render(request, 'learning_logs/delete_topic.html', context)
+    return render(request, 'learning_logs/fitness/workouts.html', context)
 
 
 @login_required()
@@ -216,61 +261,27 @@ def delete_workout(request, workout_id):
 
     workout.delete()
     context = {}
-    return render(request, 'learning_logs/delete_workout.html', context)
-
-# Custom functions
-
-
-def check_owner(request, topic_id):
-
-    topic = topic_id
-    # Make sure the topic belongs to the current user.
-    if topic.owner != request.user:
-        return render(request, 'learning_logs/404.html')
-
-
-def check_topics(request, duplicate):
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
-    copy = ""
-    copy = str(duplicate)
-    nw_copy = copy.strip().lower()
-    copy_topics = []
-
-    print("~~~~~~~~~~~~")
-    print(nw_copy)
-    print("~~~~~~~~~~~~~~~~~")
-    for topic in topics:
-        tp_copy = str(topic.text)
-        nw_tp_copy = tp_copy.lower()
-        copy_topics.append(nw_tp_copy)
-
-    for topic in copy_topics:
-
-        if nw_copy == topic:
-            print("CAN'T HAVE DUPLICATE TOPIC")
-            return True
+    return render(request, 'learning_logs/fitness/delete_workout.html', context)
 
 
 """
-Charts start here
+Charts
 
 """
-
-
 @login_required()
 def charts(request):
 
     def charts_view():
-
-        workout = WorkoutCard.objects.all()
+        question = Question.objects.all()
+      
         name = []
         context = {}
         counter = []
-        for w in workout:
-            name.append(w.name)
-            print(w.name)
-            context = {"workouts": w.name}
-            counter.append(w.id)
+        for q in question:
+            name.append(q.question_text)
+            print(q.question_text)
+            context = {"workout": q.question_text}
+            counter.append(q.id)
         return counter
 
     def topics_charts():
@@ -327,41 +338,10 @@ def charts(request):
     return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})
 
 
-"""
-Charts ends here
-
-"""
 """ 
-Custom errors views start here
+Custom errors
 
 """
-
-
 def error_404_view(request, exception):
     data = {}
     return render(request, 'learning_logs/404.html', data)
-
-
-""" 
-Custom errors views ends here
-
-"""
-
-""" 
-Start workouts view starts here
-
-"""
-
-
-@login_required()
-def start_workout(request):
-    workouts = WorkoutCard.objects.filter(
-        owner=request.user).order_by('date_added')
-    context = {'workouts': workouts}
-    return render(request, 'learning_logs/start_workout.html', context)
-
-
-""" 
-Start workouts view ends here
-
-"""
