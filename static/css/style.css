@@ -69,10 +69,6 @@ p {
 #big-boy {
 
     background: url("/static/images/thee_archive.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 
 }
 
