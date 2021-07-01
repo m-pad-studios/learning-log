@@ -1,79 +1,97 @@
-{% load static %}
-{% load sass_tags %}
-{% load bootstrap4 %}
-<!doctype html>
+{% load static %} {% load sass_tags %} {% load bootstrap4 %}
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/button-styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% sass_src 'css/nice-cards.scss' %}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/button-styles.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% sass_src 'css/nice-cards.scss' %}"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 
     <title>The Omni Logger</title>
 
-    {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
-</head>
-
+    {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+  </head>
 </html>
 
 <body id="big-boy">
+  <nav
+    class="navbar navbar-expand-md navbar-dark mb-4 border"
+    id="dark-blue-bg"
+  >
+    {% if not user.is_authenticated %}
+    <a class="navbar-brand" href="{% url 'learning_logs:index' %}"
+      >About Page</a
+    >
+    {% elif user.is_authenticated %}
+    <a class="navbar-brand" href="{% url 'learning_logs:home_dash' %}"
+      >The Omni Logger</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'learning_logs:topics' %}">Topics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'learning_logs:charts' %}">Charts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'learning_logs:new_workout' %}"
+            >Create workout</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'learning_logs:workouts' %}"
+            >View workouts</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'learning_logs:start_workout' %}"
+            >Start workout</a
+          >
+        </li>
+        {% endif %}
+      </ul>
 
-    <nav class="navbar navbar-expand-md navbar-dark  mb-4 border" id="dark-blue-bg">
-        {% if not user.is_authenticated %}
-        <a class="navbar-brand" href="{% url 'learning_logs:index' %}">About Page</a>
-        {% elif user.is_authenticated %}
-        <a class="navbar-brand" href="{% url 'learning_logs:home_dash' %}">The Omni Logger</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
 
-                    <a class="nav-link" href="{% url 'learning_logs:topics' %}">Topics</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'learning_logs:charts' %}">Charts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'learning_logs:new_workout' %}">Create workout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'learning_logs:workouts' %}">View workouts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'learning_logs:start_workout' %}">Start workout</a>
-                </li>
-                {% endif %}
-               
-            </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:logout' %}"> Log out </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
 
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'users:logout' %}">
-                        Log out
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-
-    <main role="main" class="container">
-        <div class="pb-2 mb-2 border-bottom">
-            {% block page_header %}{% endblock page_header %}
-        </div>
-        <div>
-            {% block content %}{% endblock content %}
-        </div>
-    </main>
-
+  <main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+      {% block page_header %}{% endblock page_header %}
+    </div>
+    <div>{% block content %}{% endblock content %}</div>
+  </main>
 </body>

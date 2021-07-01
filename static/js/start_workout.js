@@ -1,3 +1,5 @@
+"use strict";
+
 // IIFE for faster load time.
 (function() {
 
