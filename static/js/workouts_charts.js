@@ -1,5 +1,7 @@
 "use strict";
+(function() {
 
+  
 var key = "workout";
 var current_user = "logged_user";
 
@@ -56,3 +58,5 @@ var myChart = new Chart(context, {
     },
   },
 });
+
+}());
