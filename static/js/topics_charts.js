@@ -40,6 +40,7 @@
    var yv = graph_2[0]['votes'][5]
    var blv = graph_2[0]['votes'][6]
    var wv = graph_2[0]['votes'][7]
+   var pv_v = graph_2[0]['votes'][8]
 
    //Define colors for labels
    var blue = graph_2[0]['blue']
@@ -50,6 +51,7 @@
    var yellow = graph_2[0]['yellow']
    var black = graph_2[0]['black']
    var white = graph_2[0]['white']
+   var pink = graph_2[0]['pink']
 
   
    console.log(topics);
@@ -71,10 +73,10 @@ console.log(graph_2);
    var myChart = new Chart(context, {
        type: 'bar',
        data: {
-           labels: [blue, red, green, orange, yellow, purple, white, black],
+           labels: [blue, red, green, orange, yellow, purple, white, black, pink],
            datasets: [{
                label: "Colors Poll",
-               data: [bv,rv,gv,ov,yv,pv,wv,blv],
+               data: [bv,rv,gv,ov,yv,pv,wv,blv,pv_v],
                backgroundColor: [
                    'rgb(0, 0, 255)',
                    'rgb(255, 0, 0)',
@@ -83,7 +85,8 @@ console.log(graph_2);
                    'rgb(255, 255, 0)',
                    'rgb(106, 90, 205)',
                    'rgb(255, 255, 255)',
-                   'rgb(0, 0, 0)'
+                   'rgb(0, 0, 0)',
+                   'rgb(254,184,198)'
                ],
                borderColor: [
                    'rgb(0, 0, 0)',

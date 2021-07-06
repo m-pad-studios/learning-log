@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 class Topic(models.Model):
     """A topic the user is learning about. """
@@ -44,13 +44,18 @@ class WorkoutCard(models.Model):
     def __str__(self):
         """Return a string representation of the model."""
         return f"{self.name[:50]}..."
+
+    def details(self):
+
+        return f"{self.name, self.sets, self.reps}"
 #This is where WorkoutDecks will go. A new model that will have a WorkoutCard as FK and become a deck.
 
 class WorkoutDeck(models.Model):
     """A customizable workout deck to place Workout cards """
-   
+    
     name = models.CharField(max_length=50)
-    workouts_built_deck = models.ManyToManyField(WorkoutCard)
+    workouts_built_deck = models.ForeignKey(WorkoutCard, on_delete=models.CASCADE)
+    text = models.TextField(blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 

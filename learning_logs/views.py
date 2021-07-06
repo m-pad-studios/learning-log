@@ -183,7 +183,8 @@ Workout pages
 def start_workout(request):
     workouts = WorkoutCard.objects.filter(
         owner=request.user).order_by('date_added')
-    context = {'workouts': workouts}
+    workout_deck = WorkoutDeck.objects.order_by('date_added')
+    context = {'workouts': workouts, 'workout_deck': workout_deck}
     return render(request, 'learning_logs/fitness/start_workout.html', context)
 
 @login_required()
@@ -249,9 +250,9 @@ def workout(request, workout_id):
 def workouts(request):
     """Show all workouts."""
     workouts = WorkoutCard.objects.filter(owner=request.user).order_by('date_added')
-    workout_deck = WorkoutDeck.objects.filter(owner=request.user).order_by('date_added')
+    workout_deck = WorkoutDeck.objects.order_by('date_added')
 
-    print(workout_deck[0].workouts_built_deck)
+    print(workout_deck)
 
     context = {'workouts': workouts, 'workout_deck': workout_deck}
     return render(request, 'learning_logs/fitness/workouts.html', context)
@@ -269,6 +270,7 @@ def new_workout_deck(request):
 
         new_deck = form.save(commit=False)
         new_deck.owner = request.user
+        new_deck.text = new_deck.workouts_built_deck.details()
         new_deck.save()
             
         return redirect('learning_logs:workouts')
@@ -316,7 +318,8 @@ def charts(request):
         yellow = str(color_name[0][5])
         black = str(color_name[0][6])
         white = str(color_name[0][7])
-        
+        pink = str(color_name[0][8])
+
         bv = color_name[0][0].votes
         rv = color_name[0][1].votes
         ov = color_name[0][2].votes
@@ -325,8 +328,9 @@ def charts(request):
         yv = color_name[0][5].votes
         blv = color_name[0][6].votes
         wv = color_name[0][7].votes
+        pv_v = color_name[0][8].votes
 
-        votes = [bv,rv,ov,gv,pv,yv,blv, wv]
+        votes = [bv,rv,ov,gv,pv,yv,blv, wv, pv_v]
         context["votes"] = votes
     
         if blue == "Blue":
@@ -369,6 +373,11 @@ def charts(request):
             print("WHITE")
 
             context["white"] = white 
+        
+        if pink == "Pink":
+            print("PINK")
+
+            context["pink"] = pink
 
 
      

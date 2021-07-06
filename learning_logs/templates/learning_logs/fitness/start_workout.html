@@ -9,51 +9,22 @@
 <div class="container">
 
   <div class="card">
-{% for workout in workouts %}
-      {% if workout.id == 1 %}
-     
-      <h4 class="card-header">
-        {{ workout.name }}
-      <hr />
-      Sets:  {{ workout.sets}}
-        <hr class="card-header">
-      Reps:  {{ workout.reps }}
-        <hr class="card-header">
-      </h4> 
-      <hr style=" 
-      width: 50%;
-       margin: auto;
-       margin-top: 5%;
-       margin-bottom: 5%;
-       border: 3px dashed #1A85FD;">
-      {% elif workout.id == 2 %}
-         
-      <h4 class="card-header">
-        {{ workout.name }}
-        <hr >
-      Sets:  {{ workout.sets}}
-        <hr class="card-header">
-      Reps:  {{ workout.reps }}
-        <hr class="card-header">
-      </h4>
-      <hr style=" 
-      width: 50%;
-       margin: auto;
-       margin-top: 5%;
-       margin-bottom: 5%;
-       border: 3px dashed #1A85FD;">
-      {% elif workout.id == 3 %}
-                 
-      <h4 class="card-header">
-        {{ workout.name }}
-        <hr />
-      Sets:  {{ workout.sets}}
-        <hr class="card-header">
-      Reps:  {{ workout.reps }}
-        <hr class="card-header">
-      {% endif %}
+    <ul>
+      {% for workout in workout_deck %}
+      <class class="card mb-3">
+
+      <h4 class="card-header">{{ workout.text }}</h4>
+
+  
+        </a>
+
+      </class>
+    </ul>
+    
+      {% empty %}
+      <p>There are no workout decks yet.</p>
+      {% endfor %}  
    
-    {% endfor %}
   </div>
   <br>
 

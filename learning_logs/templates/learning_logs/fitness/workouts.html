@@ -35,20 +35,7 @@
   <p>There are no workouts yet.</p>
   {% endfor %}
 </ul>
-<ul>
-  {% for workout in workout_deck %}
-  <div class="card mb-3">
-    <a >
-      <h4 class="card-header">{{ workout.name }}</h4>
-      <br />
-      <h4 class="card-header">{{ workout.workouts_built_deck }}</h4>
-    </a>
-  
-  </div>
 
-  {% empty %}
-  <p>There are no workout decks yet.</p>
-  {% endfor %}
 <p>
   <button
     class="button-one"
