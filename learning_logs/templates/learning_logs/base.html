@@ -1,4 +1,6 @@
-{% load static %} {% load sass_tags %} {% load bootstrap4 %}
+{% load static %} 
+{% load sass_tags %} 
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,13 +19,14 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% sass_src 'css/nice-cards.scss' %}"
+      href="/static/css/nice-cards.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <title>The Omni Logger</title>
 
-    {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_css %}
+     {% bootstrap_javascript jquery='full' %}
   </head>
 </html>
 

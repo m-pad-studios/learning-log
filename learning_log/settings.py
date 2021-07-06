@@ -24,13 +24,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 SECRET_KEY = '6v$xhiifm8v+5+0kur%u(7dd7geeh!e3l(wg9g8z-)hp3(v83n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
-
 INSTALLED_APPS = [
 
     #My apps
@@ -41,7 +38,6 @@ INSTALLED_APPS = [
     #Third party apps.
     'bootstrap4',
    
-
     #Default django apps.
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,9 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'sass_processor',
-    
-
-   
 ]
 
 MIDDLEWARE = [
@@ -91,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'learning_log.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -101,7 +93,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -120,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -143,6 +133,8 @@ STATIC_URL = "/static/"
 
 MEDIA_URL = "/images/"
 
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -156,11 +148,8 @@ STATICFILES_FINDERS = [
 # Django Sass
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
 
-
-
 # My settings
 LOGIN_URL = 'users:login'
 
 # Heroku settings.
-
 django_heroku.settings(locals())
