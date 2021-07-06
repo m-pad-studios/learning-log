@@ -7,7 +7,7 @@
 <form action="{% url 'learning_logs:new_workout_deck' %}" method="post" class="form">
   {% csrf_token %} {% bootstrap_form form %} {% buttons %}
 
-  <button name="submit" class="button-one">Create deck</button>
+  <button name="submit" class="button-chart-on">Create deck</button>
   {% endbuttons %}
   <input type="hidden" name="next" value="{% url 'learning_logs:workouts' %}" />
 </form>

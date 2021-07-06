@@ -48,12 +48,11 @@ class WorkoutCard(models.Model):
     def details(self):
 
         return f"{self.name, self.sets, self.reps}"
-#This is where WorkoutDecks will go. A new model that will have a WorkoutCard as FK and become a deck.
+
 
 class WorkoutDeck(models.Model):
     """A customizable workout deck to place Workout cards """
-    
-    name = models.CharField(max_length=50)
+
     workouts_built_deck = models.ForeignKey(WorkoutCard, on_delete=models.CASCADE)
     text = models.TextField(blank=True)
     date_added = models.DateTimeField(auto_now_add=True)

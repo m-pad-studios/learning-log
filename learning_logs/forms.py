@@ -24,9 +24,9 @@ class WorkoutForm(forms.ModelForm):
 class WorkoutDeckForm(forms.ModelForm):
     class Meta:
         model = WorkoutDeck
-        workouts = WorkoutCard.objects.all()
+        workouts = WorkoutCard.objects.filter().order_by('date_added')
         workouts_details = [""]
-        fields = ['name', 'workouts_built_deck', 'text']
+        fields = ['workouts_built_deck', 'text']
         labels = {'text': workouts_details}
         widgets = {'text': forms.HiddenInput()}
 

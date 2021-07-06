@@ -8,78 +8,6 @@ h1, button{
   
 }
 
-.button-one {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: rgb(41, 86, 104);
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-    margin-left: 50px;
-  }
-  
-  .button-one:hover {background-color: skyblue}
-  
-  .button-one:active {
-    background-color: skyblue;
-    box-shadow: 0 5px skyblue;
-    transform: translateY(4px);
-  }
-
-
-  .button-two {
-    display: inline-block;
-    padding: 5px 15px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: rgba(65, 65, 26, 0.986);
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-  }
-  
-  .button-two:hover {background-color: yellow}
-  
-  .button-two:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-
-
-  .button-three {
-    display: inline-block;
-    padding: 5px 15px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: rgb(104, 17, 17);
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-  }
-  
-  .button-three:hover {background-color: red}
-  
-  .button-three:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-
   #chart-btn {
     margin-bottom: 25px;
     text-align: center;
@@ -91,3 +19,94 @@ h1, button{
     text-align: center;
     margin-right: 35px;
   } 
+
+ 
+/* General Buttons */
+.button-chart-on {
+  width: 130px;
+  height: 40px;
+  background: linear-gradient(to bottom, #4eb5e5 0%,#389ed5 100%); /* W3C */
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  border-bottom: 4px solid #2b8bc6;
+  color: #fbfbfb;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+  font-size: 15px;
+  text-align: left;
+  text-indent: 5px;
+  box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2);
+  cursor: pointer;
+
+/* Just for presentation */  
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.button-chart-on:active {
+  box-shadow: 0px 2px 0px 0px rgba(0,0,0,.2);
+  top: 1px;
+}
+
+.button-chart-on:after {
+  content: "";
+  width: 0;
+  height: 0;
+  display: block;
+  border-top: 20px solid #187dbc;
+  border-bottom: 20px solid #187dbc;
+  border-left: 16px solid transparent;
+  border-right: 20px solid #187dbc;
+  position: absolute;
+  opacity: 0.6; 
+  right: 0;
+  top: 0;
+  border-radius: 0 5px 5px 0;  
+}
+
+/* Button pointing left */
+
+.button-chart-on.back {
+  text-align: right;
+  padding-right: 12px;
+  box-sizing: border-box;
+}
+.button-chart-on.back:after {
+  content: "";
+  width: 0;
+  height: 0;
+  display: block;
+  border-top: 20px solid #187dbc;
+  border-bottom: 20px solid #187dbc;
+  border-right: 16px solid transparent;
+  border-left: 20px solid #187dbc;
+  position: absolute;
+  opacity: 0.6; 
+  left: 0;
+  top: 0;
+  border-radius: 5px 0 0 5px;    
+}
+
+/* Single buttons */
+
+.button-chart-on.site {
+  width: 40px;
+  text-align: center;
+  text-indent: 0;
+}
+.button-chart-on.site:after{
+  display: none;
+}
+
+
+/* Presentation stuff */
+.holder-chart-on {
+  width: 400px;
+ 
+  padding: 30px 10px;
+
+ 
+  text-align: center;
+}

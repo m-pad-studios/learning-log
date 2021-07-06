@@ -14,14 +14,14 @@
     </a>
     <p>
       <a
-        class="button-two"
+        class="btn btn-warning"
         href="{% url 'learning_logs:edit_workout' workout.id%}"
         role="button"
       >
         Edit workout
       </a>
       <a
-        class="button-three"
+        class="btn btn-danger"
         href="{% url 'learning_logs:delete_workout' workout.id%}"
         role="button"
         >Delete</a
@@ -38,13 +38,13 @@
 
 <p>
   <button
-    class="button-one"
+    class="button-chart-on"
     onclick="{window.location.href={% url 'learning_logs:new_workout' %}}"
   >
-    Add a new workout
+    Create workout
   </button>     
   <a
-      class="button-two"
+      class="button-chart-on"
       href="{% url 'learning_logs:new_workout_deck'%}"
    
       role="button"

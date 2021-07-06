@@ -13,10 +13,6 @@ from django.views.generic import TemplateView
 
 # Pages section
 
-""" 
-Home pages
-"""
-
 def index(request):
     """The home page for Learning Log."""
 
@@ -28,15 +24,15 @@ def home_dash(request):
     """The main dashboard for users"""
     return render(request, 'learning_logs/home_dash.html')
 
+
 def check_owner(request, topic_id):
 
     topic = topic_id
     # Make sure the topic belongs to the current user.
     if topic.owner != request.user:
         return render(request, 'learning_logs/404.html')
-"""
-Topic pages
-"""
+
+
 @login_required()
 def topic(request, topic_id):
     """Show a single topic and all its entries. """
@@ -50,6 +46,7 @@ def topic(request, topic_id):
     except entries.DoesNotExist:
         return (request, 'learning_logs/404.html')
 
+
 @login_required()
 def delete_topic(request, topic_id):
     """Delete topic and all its entries. """
@@ -58,6 +55,7 @@ def delete_topic(request, topic_id):
     topic.delete()
     context = {}
     return render(request, 'learning_logs/blogging/delete_topic.html', context)
+
 
 @login_required()
 def topics(request):
@@ -89,6 +87,7 @@ def check_topics(request, duplicate):
             print("CAN'T HAVE DUPLICATE TOPIC")
             return True
 
+
 @login_required()
 def new_topic(request):
     """Add a new topic."""
@@ -114,10 +113,6 @@ def new_topic(request):
     # Display a blank or invalid form.
     context = {'form': form}
     return render(request, 'learning_logs/blogging/new_topic.html', context)
-
-"""
-Entry pages
-"""
 
 @login_required()
 def new_entry(request, topic_id):
@@ -162,6 +157,7 @@ def edit_entry(request, entry_id):
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/blogging/edit_entry.html', context)
 
+
 @login_required()
 def delete_entry(request, entry_id):
     """Delete an existing entry."""
@@ -175,17 +171,15 @@ def delete_entry(request, entry_id):
     return render(request, 'learning_logs/blogging/delete_entry.html', context)
 
 
-"""
-Workout pages
-"""
-
 @login_required()
 def start_workout(request):
     workouts = WorkoutCard.objects.filter(
         owner=request.user).order_by('date_added')
-    workout_deck = WorkoutDeck.objects.order_by('date_added')
+    workout_deck = WorkoutDeck.objects.filter(
+        owner=request.user).order_by('date_added')
     context = {'workouts': workouts, 'workout_deck': workout_deck}
     return render(request, 'learning_logs/fitness/start_workout.html', context)
+
 
 @login_required()
 def edit_workout(request, workout_id):
@@ -241,7 +235,7 @@ def new_workout(request):
 def workout(request, workout_id):
     """Show a single workout card. """
     workout = WorkoutCard.objects.get(id=workout_id)
-    
+
     context = {'workout': workout}
     return render(request, 'learning_logs/fitness/workout.html', context)
 
@@ -249,21 +243,20 @@ def workout(request, workout_id):
 @login_required()
 def workouts(request):
     """Show all workouts."""
-    workouts = WorkoutCard.objects.filter(owner=request.user).order_by('date_added')
-    workout_deck = WorkoutDeck.objects.order_by('date_added')
-
-    print(workout_deck)
-
+    workouts = WorkoutCard.objects.filter(
+        owner=request.user).order_by('date_added')
+    workout_deck = WorkoutDeck.objects.filter(
+        owner=request.user).order_by('date_added')
     context = {'workouts': workouts, 'workout_deck': workout_deck}
     return render(request, 'learning_logs/fitness/workouts.html', context)
+
 
 @login_required()
 def new_workout_deck(request):
     """ 
     Create a workout deck.
     """
-  
-        # POST data submitted; process data.
+    # POST data submitted; process data.
     form = WorkoutDeckForm(data=request.POST)
 
     if form.is_valid():
@@ -272,15 +265,14 @@ def new_workout_deck(request):
         new_deck.owner = request.user
         new_deck.text = new_deck.workouts_built_deck.details()
         new_deck.save()
-            
+
         return redirect('learning_logs:workouts')
 
-            # Check to make sure no duplicate topic is made
-     
+        # Check to make sure no duplicate topic is made
+
     # Display a blank or invalid form.
     context = {'form': form}
     return render(request, 'learning_logs/fitness/new_workout_deck.html', context)
-
 
 
 @login_required()
@@ -292,20 +284,14 @@ def delete_workout(request, workout_id):
     context = {}
     return render(request, 'learning_logs/fitness/delete_workout.html', context)
 
-
-"""
-Charts
-
-"""
 @login_required()
 def charts(request):
 
     def charts_view():
         q = Question.objects.get(pk=1)
-      
+
         color_name = []
         context = {}
-    
 
         color_name.append(q.choice_set.all())
         print(color_name)
@@ -330,20 +316,19 @@ def charts(request):
         wv = color_name[0][7].votes
         pv_v = color_name[0][8].votes
 
-        votes = [bv,rv,ov,gv,pv,yv,blv, wv, pv_v]
+        votes = [bv, rv, ov, gv, pv, yv, blv, wv, pv_v]
         context["votes"] = votes
-    
+
         if blue == "Blue":
             print("BLUE")
-          
+
             context["blue"] = blue
-            
-        
+
         if red == "Red":
             print("RED")
 
             context["red"] = red
-        
+
         if orange == "Orange":
             print("ORANGE")
 
@@ -372,15 +357,13 @@ def charts(request):
         if white == "White":
             print("WHITE")
 
-            context["white"] = white 
-        
+            context["white"] = white
+
         if pink == "Pink":
             print("PINK")
 
             context["pink"] = pink
 
-
-     
         return context
 
     def workouts_charts():
@@ -390,7 +373,7 @@ def charts(request):
         counter = []
         for wrk in user_workouts:
             name.append(wrk.name)
-            #print(wrk.name)
+            # print(wrk.name)
             context = {"workouts": wrk.name}
             counter.append(wrk.id)
         return counter
@@ -402,17 +385,18 @@ def charts(request):
         counter = []
         for tp in user_topics:
             name.append(tp.text)
-            #print(tp.text)
+            # print(tp.text)
             context = {"topics": tp.text}
             counter.append(tp.id)
         return counter
 
     def my_own_charts():
 
-        my_topics = Topic.objects.filter(owner=request.user).order_by('date_added')
-        my_workouts = WorkoutCard.objects.filter(owner=request.user).order_by('date_added')
+        my_topics = Topic.objects.filter(
+            owner=request.user).order_by('date_added')
+        my_workouts = WorkoutCard.objects.filter(
+            owner=request.user).order_by('date_added')
 
-    
         my_topic_name = []
         context = {}
         counter = []
@@ -421,17 +405,16 @@ def charts(request):
 
         for tp in my_topics:
             my_topic_name.append(tp.text)
-            #print(tp.text)
+            # print(tp.text)
             context = {"my_topics": tp.text}
             counter.append(tp.id)
-
 
         my_workout_name = []
         context_2 = {}
 
         for w in my_workouts:
             my_workout_name.append(w.name)
-            #print(w.name)
+            # print(w.name)
             context_2 = {"my_workouts": w.name}
             counter_2.append(w.id)
 
@@ -439,11 +422,10 @@ def charts(request):
         total_counters.append(counter_2)
         return total_counters
 
-        
-    logged_user = request.user.id    
-    
-    
-    ctx = {"workouts": workouts_charts(), "topics": topics_charts(), "polls_color": charts_view(), "my_stats": my_own_charts(), "logged_user": logged_user}
+    logged_user = request.user.id
+
+    ctx = {"workouts": workouts_charts(), "topics": topics_charts(
+    ), "polls_color": charts_view(), "my_stats": my_own_charts(), "logged_user": logged_user}
     print(ctx)
 
     return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})
@@ -451,8 +433,11 @@ def charts(request):
 
 """ 
 Custom errors
-
 """
 def error_404_view(request, exception):
     data = {}
     return render(request, 'learning_logs/404.html', data)
+
+def error_500_view(request, exception):
+    data = {}
+    return render(request, 'learning_logs/500.html', data)

@@ -9,7 +9,7 @@
   class="form"
 >
   {% csrf_token %} {% bootstrap_form form %} {% buttons %}
-  <p><button name="submit" class="button-one">Save changes</button></p>
+  <p><button name="submit" class="button-chart-on">Save changes</button></p>
   {% endbuttons %}
 
   <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
