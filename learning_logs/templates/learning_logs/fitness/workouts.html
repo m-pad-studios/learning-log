@@ -1,4 +1,5 @@
 {% extends "learning_logs/base.html" %} 
+{% load bootstrap4 %}
 {% block page_header %}
 <h3>Workout Cards</h3>
 {% endblock page_header %} 
@@ -25,21 +26,49 @@
         role="button"
         >Delete</a
       >
+ 
     </p>
+
+    
   </div>
   {% empty %}
   <p>There are no workouts yet.</p>
   {% endfor %}
 </ul>
+<ul>
+  {% for workout in workout_deck %}
+  <div class="card mb-3">
+    <a >
+      <h4 class="card-header">{{ workout.name }}</h4>
+      <br />
+      <h4 class="card-header">{{ workout.workouts_built_deck }}</h4>
+    </a>
+  
+  </div>
 
+  {% empty %}
+  <p>There are no workout decks yet.</p>
+  {% endfor %}
 <p>
   <button
     class="button-one"
-    onclick="window.location.href={% url 'learning_logs:new_workout' %}"
+    onclick="{window.location.href={% url 'learning_logs:new_workout' %}}"
   >
     Add a new workout
-  </button>
+  </button>     
+  <a
+      class="button-two"
+      href="{% url 'learning_logs:new_workout_deck'%}"
+   
+      role="button"
+      id="deck"
+      >Add to deck</a
+    >
 </p>
 
+<script type="text/javascript">
+        
 
+
+</script>
 {% endblock content %}

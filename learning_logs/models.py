@@ -40,6 +40,18 @@ class WorkoutCard(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    
+    def __str__(self):
+        """Return a string representation of the model."""
+        return f"{self.name[:50]}..."
 #This is where WorkoutDecks will go. A new model that will have a WorkoutCard as FK and become a deck.
+
+class WorkoutDeck(models.Model):
+    """A customizable workout deck to place Workout cards """
+   
+    name = models.CharField(max_length=50)
+    workouts_built_deck = models.ManyToManyField(WorkoutCard)
+    date_added = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     

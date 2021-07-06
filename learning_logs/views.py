@@ -4,8 +4,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse, JsonResponse
 from django.db.models import Sum
-from .models import Topic, Entry, WorkoutCard
-from .forms import TopicForm, EntryForm, WorkoutForm
+from .models import Topic, Entry, WorkoutCard, WorkoutDeck
+from .forms import TopicForm, EntryForm, WorkoutForm, WorkoutDeckForm
 from polls.models import Choice, Question
 from django.shortcuts import redirect
 from json import dumps
@@ -92,7 +92,7 @@ def check_topics(request, duplicate):
 @login_required()
 def new_topic(request):
     """Add a new topic."""
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+
     if request.method != 'POST':
         # No data submitted; create a blank form.
         form = TopicForm()
@@ -210,7 +210,7 @@ def edit_workout(request, workout_id):
 
 @login_required()
 def new_workout(request):
-    """Add a new topic."""
+    """Add a new workout."""
     workouts = WorkoutCard.objects.filter(
         owner=request.user).order_by('date_added')
     if request.method != 'POST':
@@ -240,7 +240,7 @@ def new_workout(request):
 def workout(request, workout_id):
     """Show a single workout card. """
     workout = WorkoutCard.objects.get(id=workout_id)
-
+    
     context = {'workout': workout}
     return render(request, 'learning_logs/fitness/workout.html', context)
 
@@ -248,10 +248,37 @@ def workout(request, workout_id):
 @login_required()
 def workouts(request):
     """Show all workouts."""
-    workouts = WorkoutCard.objects.filter(
-        owner=request.user).order_by('date_added')
-    context = {'workouts': workouts}
+    workouts = WorkoutCard.objects.filter(owner=request.user).order_by('date_added')
+    workout_deck = WorkoutDeck.objects.filter(owner=request.user).order_by('date_added')
+
+    print(workout_deck[0].workouts_built_deck)
+
+    context = {'workouts': workouts, 'workout_deck': workout_deck}
     return render(request, 'learning_logs/fitness/workouts.html', context)
+
+@login_required()
+def new_workout_deck(request):
+    """ 
+    Create a workout deck.
+    """
+  
+        # POST data submitted; process data.
+    form = WorkoutDeckForm(data=request.POST)
+
+    if form.is_valid():
+
+        new_deck = form.save(commit=False)
+        new_deck.owner = request.user
+        new_deck.save()
+            
+        return redirect('learning_logs:workouts')
+
+            # Check to make sure no duplicate topic is made
+     
+    # Display a blank or invalid form.
+    context = {'form': form}
+    return render(request, 'learning_logs/fitness/new_workout_deck.html', context)
+
 
 
 @login_required()
