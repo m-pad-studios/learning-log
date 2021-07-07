@@ -48,7 +48,7 @@ urlpatterns = [
          views.edit_workout, name='edit_workout'),
     # Page for 404
     path('new_workout_deck/', views.new_workout_deck, name='new_workout_deck'),
-
+    # Page for deleted workout in deck
     path('delete_workout_deck/<int:workout_id>/', views.delete_workout_deck, name='delete_workout_deck'),
 
 ]

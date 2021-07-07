@@ -15,6 +15,9 @@ p {
     font-size: large;
 }
 
+#data-charts {
+    padding-left: 50px;
+}
 
 #jumbo {
     background-color: skyblue;

@@ -99,14 +99,3 @@ h1, button{
 .button-chart-on.site:after{
   display: none;
 }
-
-
-/* Presentation stuff */
-.holder-chart-on {
-  width: 400px;
- 
-  padding: 30px 10px;
-
- 
-  text-align: center;
-}
