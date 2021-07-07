@@ -284,7 +284,7 @@ def delete_workout_deck(request, workout_id):
 
     workout.delete()
     context = {}
-    return render(request, 'learning_logs/fitness/workouts.html', context)
+    return render(request, 'learning_logs/fitness/delete_workout.html', context)
 
 
 @login_required()
@@ -294,7 +294,7 @@ def delete_workout(request, workout_id):
 
     workout.delete()
     context = {}
-    return render(request, 'learning_logs/fitness/delete_workout.html', context)
+    return render(request, 'learning_logs/fitness/workouts.html', context)
 
 
 """
@@ -443,8 +443,7 @@ def charts(request):
 
     logged_user = request.user.id
 
-    ctx = {"workouts": workouts_charts(), "topics": topics_charts(
-    ), "polls_color": charts_view(), "my_stats": my_own_charts(), "logged_user": logged_user}
+    ctx = {"workouts": workouts_charts(), "topics": topics_charts(), "polls_color": charts_view(), "my_stats": my_own_charts(), "logged_user": logged_user}
     print(ctx)
 
     return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})

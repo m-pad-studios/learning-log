@@ -1,6 +1,7 @@
 
   "use strict";
 
+
   (function() {
     var key_2 = "my_stats";
     var graph_3 = [my_info[key_2]];

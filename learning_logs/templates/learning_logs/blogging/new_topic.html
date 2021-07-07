@@ -7,7 +7,7 @@
 <form action="{% url 'learning_logs:new_topic' %}" method="post" class="form">
   {% csrf_token %} {% bootstrap_form form %} {% buttons %}
 
-  <button name="submit" class="button-chart-on">Add topic</button>
+  <button name="submit" class="button-chart-on">Save</button>
   {% endbuttons %}
   <input type="hidden" name="next" value="{% url 'learning_logs:topics' %}" />
 </form>

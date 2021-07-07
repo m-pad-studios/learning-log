@@ -1,28 +1,4 @@
 "use strict";
-        
-    $("#fading").click(function () {
-
-
-
-        $("#div1").fadeIn();
-        $("#div2").fadeIn();
-        $("#div3").fadeIn();
-        $("#div4").fadeIn();
-
-    });
-
-    $("#fadingOut").click(function () {
-
-
-
-        $("#div1").fadeOut();
-        $("#div2").fadeOut();
-        $("#div3").fadeOut();
-        $("#div4").fadeOut();
-
-
-
-    });
 
     (function() {
 

@@ -2,10 +2,11 @@
 {% load bootstrap4 %} 
 {% block page_header %}
 <h1>
+  <div class="alert alert-success" role="alert">Workout deleted!</div>
   <a href="{% url 'learning_logs:workouts' %}" role="button" class="button-chart-on"
     >Back to workouts &raquo;</a
   >
 </h1>
 <br />
-<div class="alert alert-success" role="alert">Workout deleted!</div>
+
 {% endblock page_header %}

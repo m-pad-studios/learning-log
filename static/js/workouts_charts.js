@@ -2,22 +2,17 @@
 (function() {
 
   
-var key = "workout";
-var current_user = "logged_user";
+let key = "workout";
+let current_user = "logged_user";
 
-var graph = [myData[key]];
-var count = 0;
+let graph = [myData[key]];
+let count = 0;
 
 for (var i = 0; i < graph.length; i++) {
   graph[i] = myData[key];
   count += 1;
 }
 
-//console.log("The labels: " + count_array);
-//console.log("The array that holds the workouts ids:" + " " + graph);
-//console.log("The object that holds the workouts and current authenticated users id: ");
-
-//console.log(myData);
 
 var userName = document.getElementById("u-name").innerHTML;
 var context = document.getElementById("myWorkouts").getContext("2d");
