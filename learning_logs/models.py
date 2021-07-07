@@ -47,7 +47,7 @@ class WorkoutCard(models.Model):
 
     def details(self):
 
-        return f"{self.name, self.sets, self.reps}"
+        return f"{self.name, self.sets, self.reps, self.owner}"
 
 
 class WorkoutDeck(models.Model):
@@ -57,5 +57,3 @@ class WorkoutDeck(models.Model):
     text = models.TextField(blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    

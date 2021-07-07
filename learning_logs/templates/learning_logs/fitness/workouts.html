@@ -43,14 +43,14 @@
   >
     Create workout
   </button>     
-  <a
+  <button
       class="button-chart-on"
-      href="{% url 'learning_logs:new_workout_deck'%}"
+      onclick="{window.location.href={% url 'learning_logs:new_workout_deck' %}}"
    
       role="button"
       id="deck"
-      >Add to deck</a
-    >
+      >Add to deck
+  </button>
 </p>
 
 <script type="text/javascript">
