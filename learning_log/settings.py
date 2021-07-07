@@ -30,15 +30,15 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 INSTALLED_APPS = [
 
-    #My apps
+    # My apps
     'learning_logs',
     'users',
     'polls',
 
-    #Third party apps.
+    # Third party apps.
     'bootstrap4',
-   
-    #Default django apps.
+
+    # Default django apps.
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
 
     'django.middleware.common.CommonMiddleware',
-    
+
 
 
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -146,7 +146,7 @@ STATICFILES_FINDERS = [
 ]
 
 # Django Sass
-SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
 
 # My settings
 LOGIN_URL = 'users:login'

@@ -13,6 +13,7 @@ from django.views.generic import TemplateView
 
 # Pages section
 
+
 def index(request):
     """The home page for Learning Log."""
 
@@ -60,6 +61,7 @@ def delete_topic(request, topic_id):
 @login_required()
 def topics(request):
     """Show all topics."""
+    context = 'latest_topic_list'
     topics = Topic.objects.filter(owner=request.user).order_by('date_added')
     context = {'topics': topics}
     return render(request, 'learning_logs/blogging/topics.html', context)
@@ -113,6 +115,7 @@ def new_topic(request):
     # Display a blank or invalid form.
     context = {'form': form}
     return render(request, 'learning_logs/blogging/new_topic.html', context)
+
 
 @login_required()
 def new_entry(request, topic_id):
@@ -274,6 +277,15 @@ def new_workout_deck(request):
     context = {'form': form}
     return render(request, 'learning_logs/fitness/new_workout_deck.html', context)
 
+@login_required()
+def delete_workout_deck(request, workout_id):
+    """Delete a workout"""
+    workout = WorkoutDeck.objects.get(id=workout_id)
+
+    workout.delete()
+    context = {}
+    return render(request, 'learning_logs/fitness/workouts.html', context)
+
 
 @login_required()
 def delete_workout(request, workout_id):
@@ -283,6 +295,13 @@ def delete_workout(request, workout_id):
     workout.delete()
     context = {}
     return render(request, 'learning_logs/fitness/delete_workout.html', context)
+
+
+"""
+TODO: see about moving charts to Models and read from the DB instead of bloating view.
+"""
+
+
 
 @login_required()
 def charts(request):
@@ -438,6 +457,7 @@ def error_404_view(request, exception):
     data = {}
     return render(request, 'learning_logs/404.html', data)
 
-def error_500_view(request, exception):
+
+def error_500_view(request):
     data = {}
     return render(request, 'learning_logs/500.html', data)

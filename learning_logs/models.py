@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.utils import timezone
 # Create your models here.
+
+
 class Topic(models.Model):
     """A topic the user is learning about. """
 
@@ -20,11 +22,12 @@ class Topic(models.Model):
         """Return a string representation of the model. """
         return self.text
 
+
 class Entry(models.Model):
     """Something specific learned about a topic."""
 
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    
+
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -34,6 +37,7 @@ class Entry(models.Model):
     def __str__(self):
         """Return a string representation of the model."""
         return f"{self.text[:50]}..."
+
 
 class WorkoutCard(models.Model):
     """A customizable workout card"""
@@ -47,7 +51,6 @@ class WorkoutCard(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    
     def __str__(self):
         """Return a string representation of the model."""
         return f"{self.name[:50]}..."
@@ -60,7 +63,8 @@ class WorkoutCard(models.Model):
 class WorkoutDeck(models.Model):
     """A customizable workout deck to place Workout cards """
 
-    workouts_built_deck = models.ForeignKey(WorkoutCard, on_delete=models.CASCADE)
+    workouts_built_deck = models.ForeignKey(
+        WorkoutCard, on_delete=models.CASCADE)
     text = models.TextField(blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)

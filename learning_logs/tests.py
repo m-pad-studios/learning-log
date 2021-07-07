@@ -11,14 +11,18 @@ from django.contrib.auth import get_user_model
 """
 Method factory.
 """
+
+
 def create_topic(text, days, owner):
 
     time = timezone.now() + datetime.timedelta(days=days)
     return Topic.objects.create(text=text, date_added=time, owner=owner)
 
+
 """
 Unit tests for Question model
 """
+
 
 class TopicModelTests(TestCase):
 
@@ -47,14 +51,10 @@ class TopicIndexViewTests(TestCase):
 
         response = self.client.get(reverse('learning_logs:topics'))
         self.assertEqual(response.status_code, 302)
-   
-
-   
 
     def test_past_topic(self):
 
         topic = create_topic(text="Past topic.", days=-30)
-
 
     def test_future_topic(self):
 
@@ -66,16 +66,15 @@ class TopicIndexViewTests(TestCase):
 
     def test_future_topic_and_past_topic(self):
 
-
-
-        topic = create_topic(text="Past topic.",  days=-30)
-        create_topic(text="Future topic.", days=30)
+        user = User.objects.create(id=0,  username='M')
+        topic = create_topic(text="Past topic.",  days=-30, owner=user)
         response = self.client.get(reverse('learning_logs:topics'))
-        self.assertQuerysetEqual(response.context['latest_topic_list'], [topic])
+        self.assertQuerysetEqual(
+            response.context['latest_topic_list'], [topic])
 
     def test_two_past_topics(self):
 
-        user =  User.objects.create(id=0,  username='M')
+        user = User.objects.create(id=0,  username='M')
         user2 = User.objects.create(id=1, username='P')
         topic1 = create_topic(text="Past topic 1.", days=-30, owner=user)
         topic2 = create_topic(text="Past topic 2.", days=-5, owner=user2)
@@ -91,8 +90,8 @@ class TopicDetailViewTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_past_topic(self):
+        user = User.objects.create(id=0,  username='M')
+        past_topic = create_topic(text='Past topic.', days=-5, owner=user)
+        response = self.client.get('learning_logs:topics')
 
-        past_topic = create_topic(text='Past topic.', days=-5)
-        url = reverse('learning_logs:topics', args=(past_topic.id,))
-        response = self.client.get(url)
-        self.assertContains(response, past_topic.text)
+        self.assertEqual(response.status_code, 404)

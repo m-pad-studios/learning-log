@@ -16,6 +16,12 @@
       <h4 class="card-header">{{ workout.text }}</h4>
 
   
+      <a
+      class="btn btn-danger"
+      href="{% url 'learning_logs:delete_workout_deck' workout.id%}"
+      role="button"
+      >Delete</a
+    >
 
 
       </class>

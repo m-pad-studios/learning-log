@@ -7,9 +7,10 @@ from learning_logs import views
 app_name = 'learning_logs'
 
 handler404 = 'learning_logs.views.error_404_view'
+handler500 = 'learning_logs.views.error_500_view'
 
 urlpatterns = [
-    #Home page 
+    # Home page
     path('', views.index, name='index'),
     # Page that shows all topics.
     path('topics/', views.topics, name='topics'),
@@ -27,22 +28,27 @@ urlpatterns = [
     path('start_workout/', views.start_workout, name='start_workout'),
     # Page for creating workout cards
     path('new_workout/', views.new_workout, name='new_workout'),
-    # Page to all your workout cards created 
+    # Page to all your workout cards created
     path('workouts/', views.workouts, name='workouts'),
     # Detail page for a single workout
     path('workout/<int:workout_id>/', views.workout, name='workout'),
     # Page that notifies entry has been deleted
-    path('delete_entry/<int:entry_id>/', views.delete_entry, name='delete_entry'),
+    path('delete_entry/<int:entry_id>/',
+         views.delete_entry, name='delete_entry'),
     # Page that notifies topic has been deleted
-    path('delete_topic/<int:topic_id>/', views.delete_topic, name='delete_topic'),
+    path('delete_topic/<int:topic_id>/',
+         views.delete_topic, name='delete_topic'),
     # Page that notifies workout has been deleted
-    path('delete_workout/<int:workout_id>/', views.delete_workout, name='delete_workout'),
+    path('delete_workout/<int:workout_id>/',
+         views.delete_workout, name='delete_workout'),
     # Page for home dashboard when you login
     path('home_dash/', views.home_dash, name='home_dash'),
     # Page for editing workouts
-    path('edit_workout/<int:workout_id>/', views.edit_workout, name='edit_workout'),
+    path('edit_workout/<int:workout_id>/',
+         views.edit_workout, name='edit_workout'),
     # Page for 404
     path('new_workout_deck/', views.new_workout_deck, name='new_workout_deck'),
 
-   
+    path('delete_workout_deck/<int:workout_id>/', views.delete_workout_deck, name='delete_workout_deck'),
+
 ]
