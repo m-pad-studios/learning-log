@@ -86,17 +86,3 @@
     opacity: .2;
     color: white;
     z-index: 0; }
-
-@media screen and (max-width: 600px) {
-  #main-card {
-    margin-top: 300px; } }
-
-/*# sourceMappingURL=nice-cards.css.map */
-
-@media (min-width: 576px){
-  #left {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-  }
-}

@@ -1,0 +1,21 @@
+@media screen and (max-width: 600px) {
+
+
+    #main-dash-card {
+        margin-top: 360px;
+    }
+
+    #main-card {
+      margin-top: 300px; } }
+  
+  /*  Charts Pages */
+  
+  @media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px){
+
+    #left {
+       
+   
+    }
+  }
