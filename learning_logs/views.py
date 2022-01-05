@@ -307,7 +307,7 @@ TODO: see about moving charts to Models and read from the DB instead of bloating
 def charts(request):
 
     def charts_view():
-        q = Question.objects.get(pk=0)
+        q = Question.objects.get(pk=1)
 
         color_name = []
         context = {}
@@ -443,7 +443,7 @@ def charts(request):
 
     logged_user = request.user.id
 #"polls_color": charts_view(),
-    ctx = {"workouts": workouts_charts(), "topics": topics_charts(), "my_stats": my_own_charts(), "logged_user": logged_user}
+    ctx = {"workouts": workouts_charts(), "topics": topics_charts(), "polls_color": charts_view(), "my_stats": my_own_charts(), "logged_user": logged_user}
     print(ctx)
 
     return render(request, 'learning_logs/charts.html', {'serialized_data': json.dumps(ctx)})
