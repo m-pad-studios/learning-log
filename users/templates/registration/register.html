@@ -6,6 +6,7 @@
 {% endblock page_header %}
 
 {% block content %}
+<div style="background-color: aliceblue; padding-left: 25px; padding-right: 25px; padding-top: 25px; height: 475px;">
 <form method="post" action="{% url 'users:register' %}"  class="form" >
 {% csrf_token %}
 {% bootstrap_form form %}
@@ -15,5 +16,6 @@
 
 <input type="hidden" name="next" value="{% url 'learning_logs:home_dash' %}" />
 </form>
+</div>
 <div id="space"></div>
 {% endblock content %}
