@@ -19,6 +19,11 @@ def index(request):
 
     return render(request, 'learning_logs/index.html')
 
+def about(request):
+    """The about me page."""
+
+    return render(request, 'learning_logs/about.html')
+
 
 @login_required()
 def home_dash(request):

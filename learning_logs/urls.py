@@ -12,6 +12,8 @@ handler500 = 'learning_logs.views.error_500_view'
 urlpatterns = [
     # Home page
     path('', views.index, name='index'),
+    # About page
+    path('about/', views.about, name='about'),
     # Page that shows all topics.
     path('topics/', views.topics, name='topics'),
     # Detail page for a single topic.

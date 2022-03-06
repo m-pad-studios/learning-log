@@ -17,12 +17,12 @@
     <div class="row align-middle" >
       <div class="col-sm-1 col-lg-12 column" >
         <div class="card gr-1" >
-          <div class="txt">
+          <div>
             <h1>Active Polls</h1>
-            <p >
+            <p>
           {% for question in latest_question_list %}
           <br>
-    <span><a href="{% url 'polls:detail' question.id %}" >{{ question.question_text }}</a></span> 
+    <span><a href="{% url 'polls:detail' question.id %}" style="color: white;">{{ question.question_text }}</a></span> 
     <br>
     {% endfor %}
             </p>

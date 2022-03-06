@@ -20,27 +20,12 @@ $gr-3:linear-gradient(170deg, #01E4F8 0%, #1D3EDE 100%);
 }
 
 .column{
-  margin-top:3rem;
+  margin-top:10rem;
   padding-left:3rem;
-  &:hover{
- 
-    .card .txt{
-      margin-left:1rem;
-      h1, p{
-        color:rgba(255,255,255,1);
-        opacity:1;
-      }
-    }
-    a{
-      color:rgba(255,255,255,1);
-      &:after{
-      width: 10%;
-      }
-    }
-  }
+
 }
 .card{
-  min-height:170px;
+  height:250px;
   margin: 0;
   padding: 1.7rem 1.2rem;
   border: none;

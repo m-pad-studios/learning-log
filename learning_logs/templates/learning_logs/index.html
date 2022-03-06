@@ -15,16 +15,18 @@
   <div class="row align-middle">
     <div class="col-md-6 col-lg-4 column">
       <div class="card gr-1">
-        <div class="txt">
-          <h1>Register an account</h1>
-          <p>
-            If you're currently not a member click the Register link below to
+        <div>
+          <h2 style="padding-left: 20px;">Register an account</h2>
+          <br/>
+          
+          <p style="color: white;">
+            If you're currently not a member click the link below to
             sign up today.
             <br />
-            <br />
+            
           </p>
         </div>
-        <a href="{% url 'users:register' %}" role="button">Register </a>
+        <a href="{% url 'users:register' %}" role="button" style="color: white; text-align: center; padding-right: 25px;">Register </a>
         <div class="ico-card">
           <i class="fa fa-rebel"></i>
         </div>
@@ -32,14 +34,17 @@
     </div>
     <div class="col-md-6 col-lg-4 column">
       <div class="card gr-2">
-        <div class="txt">
-          <h1>Community Polls</h1>
-          <p>
-            Like answering random questions and seeing the results automatically
-            printed in a beautiful chart? Click the link below to vote!
+        <div>
+          <h2 style="padding-left: 40px;">Community Polls</h2>
+          <br/>
+          
+          <p style="color: white;">
+           Click the link below to vote!
+           <br/>
+           <br/>
           </p>
         </div>
-        <a href="{% url 'polls:index' %}" role="button">Off to the polls!</a>
+        <a href="{% url 'polls:index' %}" role="button" style="color: white; text-align: center;">Polls</a>
         <div class="ico-card">
           <i class="fa fa-codepen"></i>
         </div>
@@ -47,16 +52,16 @@
     </div>
     <div class="col-md-6 col-lg-4 column">
       <div class="card gr-3">
-        <div class="txt">
-          <h1>Already an Omni Logger</h1>
-          <p>
+        <div>
+          <h2 style="padding-left: 35px;">Already a Logger?</h2>
+          <br/>
+          <p style="color: white;">
             Click the link below to log back in!
             <br />
-            <br />
-            <br />
+          <br/>
           </p>
         </div>
-        <a href="{% url 'users:login' %}" role="button" style="color: white;">Login</a>
+        <a href="{% url 'users:login' %}" role="button" style="color: white; text-align: center;">Login</a>
         <div class="ico-card">
           <i class="fa fa-empire"></i>
         </div>
