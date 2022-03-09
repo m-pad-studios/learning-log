@@ -15,58 +15,48 @@
 {% if user.is_authenticated %}
 
 
-    <div class="container h-100" id="main-dash-card">
+    <div id="main-dash-card">
         <div class="row align-middle">
           <div class="col-md-6 col-lg-4 column">
             <div class="card gr-1">
-              <div class="txt">
+              <div>
                 <h1>Topics</h1>
                 <p>Create an omni log and add entries to each log or add an entry to a public omni log.
                      <br>
-                     <br> 
-                     <br>
-                     <button class="btn btn-lg" onclick="window.location.href={% url 'learning_logs:topics' %}" style="background-color: greenyellow;">Go</button></p>
+                </p>
+                <a href="{% url 'learning_logs:topics' %}" role="button" style="color: white; text-align: center; padding-right: 25px;">Register </a>
+
               </div>
-           
-              <div class="ico-card">
-              <i class="fa fa-rebel"></i>
-            </div>
+        
             </div>
           </div>
           <div class="col-md-6 col-lg-4 column">
             <div class="card gr-1">
-              <div class="txt">
+              <div >
                 <h1>Charts</h1>
                 <p>Head on over and customize the look and feel of your charts. The more you log the more is tracked!                                                      
             <br>
-            <br>
-            <br>
-   
-           
-                    <button class="btn btn-lg" onclick="window.location.href={% url 'learning_logs:charts' %}" style="background-color: greenyellow;">Go</button></p>
+            </p>
+            <a href="{% url 'learning_logs:charts' %}" role="button" style="color: white; text-align: center; padding-right: 25px;">Register </a>
+
               </div>
           
-            <div class="ico-card">
-              <i class="fa fa-codepen"></i>
-            </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 column">
             <div class="card gr-1">
-              <div class="txt">
+              <div >
                 <h1>Community Polls</h1>
-                <p>Like answering random questions and seeing the results automatically printed in a beautiful chart? Then head on over to vote by clicking the link below! <br> <br> <button class="btn btn-lg" onclick="window.location.href={% url 'polls:index' %}" style="background-color: greenyellow;">Go</button></p>
+                <p>Like answering random questions and seeing the results automatically printed in a beautiful chart? Then head on over to vote by clicking the link below! <br>
+                </p>
+                <a href="{% url 'polls:index' %}" role="button" style="color: white; text-align: center; padding-right: 25px;">Register </a>
+
               </div>
       
-            <div class="ico-card">
-              <i class="fa fa-empire"></i>
-            </div>
             </div>
           </div>
           
         </div>
       </div>
     {% endif %}
-</div>
-
 {% endblock content %}
